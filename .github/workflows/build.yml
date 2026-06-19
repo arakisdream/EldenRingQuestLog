@@ -12,6 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install CMake 3.28
+      uses: jwlawson/actions-setup-cmake@v2
+      with:
+        cmake-version: '3.28.1'
+
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
@@ -22,4 +27,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: erquestlog
-        path:
+        path: build/Release/erquestlog.dll
