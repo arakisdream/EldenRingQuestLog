@@ -22,4 +22,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: erquestlog
-        path: build/Release/erquestlog.dll
+        path: |
+          build/Release/erquestlog.dll
+          build/Release/questlog_lang/

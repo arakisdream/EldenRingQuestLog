@@ -74,16 +74,12 @@ constexpr esd_expression esd_get_flag_value(int flag, int value = 0, int compari
     unsigned char comp = 0x95;
 
     if(comparison == -2){
-        //less than
         comp = 0x93;
     }else if(comparison == -1){
-        //less than or equal
         comp = 0x91;
     }else if(comparison == 1){
-        //greater than or equal
         comp = 0x92;
     }else if(comparison == 2){
-        //greater than
         comp = 0x94;
     }
 
@@ -123,16 +119,12 @@ constexpr esd_expression esd_compare_inventory(int item_flag, int value = 0, int
     unsigned char comp = 0x95;
 
     if(comparison == -2){
-        //less than
         comp = 0x93;
     }else if(comparison == -1){
-        //less than or equal
         comp = 0x91;
     }else if(comparison == 1){
-        //greater than or equal
         comp = 0x92;
     }else if(comparison == 2){
-        //greater than
         comp = 0x94;
     }
 
@@ -181,10 +173,8 @@ constexpr esd_expression esd_not(esd_expression expr)
 {
     auto newExpr = expr;
     int expr_end = newExpr.rend() - std::find(newExpr.rbegin(), newExpr.rend(), 0xa1)-1;
-
     newExpr[expr_end] = 0x9a;
     newExpr[expr_end + 1] = 0xa1;
-
     return newExpr;
 }
 
@@ -196,14 +186,11 @@ constexpr esd_expression esd_and(esd_expression expr1, esd_expression expr2)
     auto newExpr = expr1;
     int expr1_end = expr1.rend() - std::find(expr1.rbegin(), expr1.rend(), 0xa1)-1;
     int expr2_end = expr2.rend() - std::find(expr2.rbegin(), expr2.rend(), 0xa1)-1;
-
     for (int i = 0; i < expr2_end; i++) {
         newExpr[expr1_end + i] = expr2[i];
     }
-
     newExpr[expr1_end + expr2_end] = 0x98;
     newExpr[expr1_end + expr2_end + 1] = 0xa1;
-
     return newExpr;
 }
 
@@ -215,14 +202,11 @@ constexpr esd_expression esd_or(esd_expression expr1, esd_expression expr2)
     auto newExpr = expr1;
     int expr1_end = expr1.rend() - std::find(expr1.rbegin(), expr1.rend(), 0xa1)-1;
     int expr2_end = expr2.rend() - std::find(expr2.rbegin(), expr2.rend(), 0xa1)-1;
-
     for (int i = 0; i < expr2_end; i++) {
         newExpr[expr1_end + i] = expr2[i];
     }
-
     newExpr[expr1_end + expr2_end] = 0x99;
     newExpr[expr1_end + expr2_end + 1] = 0xa1;
-
     return newExpr;
 }
 
@@ -231,18 +215,14 @@ constexpr esd_expression esd_or(esd_expression expr1, esd_expression expr2)
  */
 int get_int_value(ezs::arg &arg)
 {
-    // Single byte (plus final 0xa1) - used to store integers from -64 to 63
     if (arg.size() == 2)
     {
         return arg[0] - 64;
     }
-
-    // Five bytes (plus final 0xa1) - used to store larger integers
     if (arg.size() == 6 && arg[0] == 0x82)
     {
         return *reinterpret_cast<int *>(&arg[1]);
     }
-
     return -1;
 }
 
@@ -254,16 +234,16 @@ int get_int_value(ezs::arg &arg)
     int_value_data name##_index_value = esd_int(index);                                             \
     int_value_data name##_message_id_value = esd_int(message_id);                                   \
     int_value_data name##_unk_value = esd_int(-1);                                                  \
-    std::array<ezs::arg, 3> name##_args = {name##_index_value, name##_message_id_value,   \
-                                                     name##_unk_value}
+    std::array<ezs::arg, 3> name##_args = {name##_index_value, name##_message_id_value,             \
+                                           name##_unk_value}
 
 #define ADD_TALK_LIST_IF_DATA_ARGS(name, index, message_id, condition)                              \
     int_value_data name##_index_value = esd_int(index);                                             \
     int_value_data name##_message_id_value = esd_int(message_id);                                   \
     int_value_data name##_unk_value = esd_int(-1);                                                  \
     esd_expression name##_condition = condition;                                                    \
-    std::array<ezs::arg, 4> name##_args = {name##_condition, name##_index_value,          \
-                                                     name##_message_id_value, name##_unk_value}
+    std::array<ezs::arg, 4> name##_args = {name##_condition, name##_index_value,                    \
+                                           name##_message_id_value, name##_unk_value}
 
 #define OPEN_GENERIC_DIALOG_MSG(state_id, name, prev_state, msg)                                    \
     int_value_data name##_v01 = esd_int(7);                                                         \
@@ -290,12 +270,13 @@ int get_int_value(ezs::arg &arg)
     int_value_data name##_v01 = esd_int(7);                                                         \
     int_value_data name##_v02 = esd_int(1);                                                         \
     int_value_data name##_v03 = esd_int(0);                                                         \
+    int_value_data name##_hint_v03 = esd_int(1);                                                    \
     int_value_data name##_msg = esd_int(msg);                                                       \
     int_value_data name##_hint_msg = esd_int(hint_msg);                                             \
     std::array<ezs::arg, 5> name##_args = {name##_v01, name##_msg,                                 \
                                            name##_v02, name##_v03, name##_v02};                     \
     std::array<ezs::arg, 5> name##_hint_args = {name##_v01, name##_hint_msg,                       \
-                                                name##_v02, name##_v03, name##_v02};                \
+                                                name##_v02, name##_hint_v03, name##_v02};           \
     std::array<ezs::event, 1> name##_events = {                                                     \
         ezs::event{talk_comm::open_generic_dialog, name##_args},                                    \
     };                                                                                              \
