@@ -79,7 +79,7 @@ ADD_TALK_LIST_IF_DATA_ARGS(irina_quest, 3, 87010000, esd_get_flag(1045349207));
 ezs::transition irina_quest_transition(&irina_quest_state, evals::get_talk_list[3]);
 
 ADD_TALK_LIST_DATA_ARGS(irina_q1, 1, 87010100);
-OPEN_GENERIC_DIALOG_MSG(870101, irina_q1_state, &irina_quest_state, 87010101);
+OPEN_GENERIC_DIALOG_MSG_WITH_HINT(870101, 8701011, irina_q1_state, &irina_quest_state, 87010101, 87010102);
 ezs::transition irina_q1_transition(&irina_q1_state, evals::get_talk_list[1]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(irina_q2, 2, 87010200, esd_get_flag(1043319206));
@@ -2149,7 +2149,7 @@ OPEN_GENERIC_DIALOG_MSG(872403, millicent_q3_state, &millicent_quest_state, 8724
 ezs::transition millicent_q3_transition(&millicent_q3_state, evals::get_talk_list[3]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(millicent_q4, 4, 87240400, esd_get_flag(1042559205));
-OPEN_GENERIC_DIALOG_MSG(872404, millicent_q4_state, &millicent_quest_state, 87240401);
+OPEN_GENERIC_DIALOG_MSG_WITH_HINT(872404, 8724041, millicent_q4_state, &millicent_quest_state, 87240401, 87240402);
 ezs::transition millicent_q4_transition(&millicent_q4_state, evals::get_talk_list[4]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(millicent_q5, 5, 87240500, esd_get_flag(1051569255));

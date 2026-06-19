@@ -174,44 +174,6 @@ constexpr esd_expression esd_compare_inventory(int item_flag, int value = 0, int
     };
 }
 
-/*constexpr std::string esd_get_talk_list(int pos)
-{
-    return {
-        0x57,
-        0x84,
-        0x82,
-        static_cast<unsigned char>((pos & 0x000000ff)),
-        static_cast<unsigned char>((pos & 0x0000ff00) >> 8),
-        static_cast<unsigned char>((pos & 0x00ff0000) >> 16),
-        static_cast<unsigned char>((pos & 0xff000000) >> 24),
-        0x95,
-        0xa1,
-        '\0',
-    };
-}*/
-
-/*constexpr auto esd_get_talk_list(int pos)
-{
-    struct StringLiteral {
-        char data[10];  // 9 characters + null terminator
-        
-        constexpr StringLiteral(int pos) : data{
-            static_cast<char>(0x57),
-            static_cast<char>(0x84),
-            static_cast<char>(0x82),
-            static_cast<char>(((pos+128) & 0x000000ff)),
-            static_cast<char>(((pos+128) & 0x0000ff00) >> 8),
-            static_cast<char>(((pos+128) & 0x00ff0000) >> 16),
-            static_cast<char>(((pos+128) & 0xff000000) >> 24),
-            static_cast<char>(0x95),
-            static_cast<char>(0xa1),
-            '\0',
-        } {}
-    };
-    
-    return StringLiteral(pos);
-}*/
-
 /**
  * Create an ESD expression for logic NOT on a given expression
  */
@@ -293,7 +255,7 @@ int get_int_value(ezs::arg &arg)
     int_value_data name##_message_id_value = esd_int(message_id);                                   \
     int_value_data name##_unk_value = esd_int(-1);                                                  \
     std::array<ezs::arg, 3> name##_args = {name##_index_value, name##_message_id_value,   \
-                                                     name##_unk_value}                          
+                                                     name##_unk_value}
 
 #define ADD_TALK_LIST_IF_DATA_ARGS(name, index, message_id, condition)                              \
     int_value_data name##_index_value = esd_int(index);                                             \
@@ -301,59 +263,64 @@ int get_int_value(ezs::arg &arg)
     int_value_data name##_unk_value = esd_int(-1);                                                  \
     esd_expression name##_condition = condition;                                                    \
     std::array<ezs::arg, 4> name##_args = {name##_condition, name##_index_value,          \
-                                                     name##_message_id_value, name##_unk_value}           
+                                                     name##_message_id_value, name##_unk_value}
 
 #define OPEN_GENERIC_DIALOG_MSG(state_id, name, prev_state, msg)                                    \
     int_value_data name##_v01 = esd_int(7);                                                         \
     int_value_data name##_v02 = esd_int(1);                                                         \
     int_value_data name##_v03 = esd_int(0);                                                         \
     int_value_data name##_msg = esd_int(msg);                                                       \
-                                                                                                    \
-    std::array<ezs::arg, 5> name##_args = {name##_v01, name##_msg, name##_v02,            \
-                                                     name##_v03, name##_v02, };                     \
-    std::array<ezs::event, 1> name##_events = {                                           \
-        ezs::event{talk_comm::open_generic_dialog, name##_args},                 \
+    std::array<ezs::arg, 5> name##_args = {name##_v01, name##_msg, name##_v02,                     \
+                                           name##_v03, name##_v02};                                 \
+    std::array<ezs::event, 1> name##_events = {                                                     \
+        ezs::event{talk_comm::open_generic_dialog, name##_args},                                    \
     };                                                                                              \
-    ezs::transition name##_transition(prev_state,                                         \
-                                    evals::dialog_closed_evaluator);               \
-    std::array<ezs::transition *, 1> name##_transitions = {                               \
+    ezs::transition name##_transition(prev_state,                                                   \
+                                      evals::dialog_closed_evaluator);                              \
+    std::array<ezs::transition *, 1> name##_transitions = {                                         \
         &name##_transition,                                                                         \
     };                                                                                              \
-    ezs::state name## = {                                                                 \
+    ezs::state name## = {                                                                           \
         .id = state_id,                                                                             \
         .transitions = name##_transitions,                                                          \
         .entry_events = name##_events,                                                              \
     }
 
-
-
-// "irina", 8201, 3, esd_get_flag(1045349207), [[nullptr], [esd_get_flag(1043319206)], [...]]
-/*#define QUEST_BUILDER(quest_name, base_id, conditions)                                     \
-                                                                                                            \
-    
-    ADD_TALK_LIST_IF_DATA_ARGS(roderika_q5, 5, 82020500, esd_get_flag(11109219));
-    OPEN_GENERIC_DIALOG_MSG(820205, roderika_q5_state, &roderika_quest_state, 82020501);
-    ezs::transition roderika_q5_transition(&roderika_q5_state, evals::get_talk_list[5]);
-                    \
-                                                  \
-    int idx = 0;      \
-    int counter = 0;      \
-    std::string root = "";      \
-            \
-    for (esd_expression step : conditions){               \
-        idx++;              \
-        counter++;                                              \
-        root = quest_name##idx_txt;                                              \
-        if(step != nullptr){                 \
-            ADD_TALK_LIST_IF_DATA_ARGS(quest_name##idx_txt, idx, base_id * 10000 + idx * 100, step);                                                    \
-        } else {                \
-            ADD_TALK_LIST_DATA_ARGS(quest_name##idx_txt, idx, base_id * 10000 + idx * 100);          \
-        };               \
-        OPEN_GENERIC_DIALOG_MSG((base_id * 100 + idx), q_state_root##idx_txt,             \
-            &&quest_name##_quest_state, (base_id * 10000 + idx * 100 + 1));                                                    \
-        ezs::transition q_trans_root##idx_txt(&q_state_root##idx_txt, evals::get_talk_list[idx]);      \
-    }*/
-
-
+#define OPEN_GENERIC_DIALOG_MSG_WITH_HINT(state_id, hint_state_id, name, prev_state, msg, hint_msg) \
+    int_value_data name##_v01 = esd_int(7);                                                         \
+    int_value_data name##_v02 = esd_int(1);                                                         \
+    int_value_data name##_v03 = esd_int(0);                                                         \
+    int_value_data name##_msg = esd_int(msg);                                                       \
+    int_value_data name##_hint_msg = esd_int(hint_msg);                                             \
+    std::array<ezs::arg, 5> name##_args = {name##_v01, name##_msg,                                 \
+                                           name##_v02, name##_v03, name##_v02};                     \
+    std::array<ezs::arg, 5> name##_hint_args = {name##_v01, name##_hint_msg,                       \
+                                                name##_v02, name##_v03, name##_v02};                \
+    std::array<ezs::event, 1> name##_events = {                                                     \
+        ezs::event{talk_comm::open_generic_dialog, name##_args},                                    \
+    };                                                                                              \
+    std::array<ezs::event, 1> name##_hint_events = {                                                \
+        ezs::event{talk_comm::open_generic_dialog, name##_hint_args},                               \
+    };                                                                                              \
+    ezs::transition name##_hint_transition(prev_state,                                              \
+                                           evals::dialog_closed_evaluator);                         \
+    std::array<ezs::transition *, 1> name##_hint_transitions = {                                    \
+        &name##_hint_transition,                                                                     \
+    };                                                                                              \
+    ezs::state name##_hint = {                                                                      \
+        .id = hint_state_id,                                                                        \
+        .transitions = name##_hint_transitions,                                                     \
+        .entry_events = name##_hint_events,                                                         \
+    };                                                                                              \
+    ezs::transition name##_transition(&name##_hint,                                                 \
+                                      evals::dialog_closed_evaluator);                              \
+    std::array<ezs::transition *, 1> name##_transitions = {                                         \
+        &name##_transition,                                                                         \
+    };                                                                                              \
+    ezs::state name## = {                                                                           \
+        .id = state_id,                                                                             \
+        .transitions = name##_transitions,                                                          \
+        .entry_events = name##_events,                                                              \
+    }
 
 };
