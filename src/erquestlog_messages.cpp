@@ -62,9 +62,9 @@ static const wchar_t *msg_repository_lookup_entry_detour(from::CS::MsgRepository
         auto result = questlog_strings.find(std::to_string(msg_id));
         if (result != questlog_strings.end())
         {
-            //return questlog_strings[std::to_string(msg_id)].c_str();
+            if (msg_id == 87240010 || msg_id == 87240012)
+                spdlog::info("[QUESTLOG] msg lookup hit: {}", msg_id);
             return result->second.data();
-            //return L"test\ntest&egrave;ù";
         }
     }
 
