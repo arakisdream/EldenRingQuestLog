@@ -57,6 +57,7 @@ add_library(EldenRingQuestLogMod SHARED
   src/from/game_data.hpp
   src/from/ezstate.hpp
   src/from/params.hpp
+  src/from/paramdef/WORLD_MAP_POINT_PARAM_ST.hpp
   src/from/params.cpp
   src/modutils.hpp
   src/modutils.cpp
@@ -69,7 +70,9 @@ add_library(EldenRingQuestLogMod SHARED
   src/erquestlog_quests.hpp
   src/erquestlog_messages.hpp
   src/erquestlog_messages.cpp
-  src/dllmain.cpp)
+  src/dllmain.cpp
+  src/erquestlog_markers.hpp
+  src/erquestlog_markers.cpp)
 
 set_target_properties(EldenRingQuestLogMod PROPERTIES OUTPUT_NAME "erquestlog")
 

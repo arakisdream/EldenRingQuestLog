@@ -9,6 +9,7 @@
 #include "erquestlog_config.hpp"
 #include "erquestlog_messages.hpp"
 #include "erquestlog_talkscript.hpp"
+#include "erquestlog_markers.hpp"
 #include "from/params.hpp"
 #include "modutils.hpp"
 
@@ -50,6 +51,10 @@ static void setup_mod(std::filesystem::path folder)
     erquestlog::setup_talkscript();
 
     modutils::enable_hooks();
+
+    spdlog::info("Initializing quest markers...");
+    erquestlog::markers::init_markers();
+
     spdlog::info("Initialized mod");
 }
 

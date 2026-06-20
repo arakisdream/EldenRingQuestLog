@@ -5,7 +5,7 @@ namespace from {
 namespace paramdef {
 /**
  * @brief This struct was automatically generated from XML paramdefs.
- * 
+ *
  */
 struct WORLD_MAP_POINT_PARAM_ST {
     /**
@@ -119,7 +119,12 @@ struct WORLD_MAP_POINT_PARAM_ST {
      */
     bool dispMask01 : 1 { false };
 
-    unsigned char pad2_0 : 6;
+    /**
+     * @brief dispMask02
+     */
+    unsigned char dispMask02 : 1 { 0 };
+
+    unsigned char pad2_0_1 : 5;
 
     unsigned char pad2[1];
 
@@ -506,39 +511,93 @@ struct WORLD_MAP_POINT_PARAM_ST {
      */
     unsigned char entryFEType{ 0 };
 
-    unsigned char pad4[9];
+    unsigned char unknown_0xb7{ 0 };
 
-    int unkC0{ 0 };
+    unsigned char unknown_0xb8{ 0 };
 
-    int unkC4{ 0 };
+    unsigned char unknown_0xb9{ 0 };
 
-    int unkC8{ 0 };
+    unsigned char pad4[6];
 
-    int unkCC{ 0 };
+    /**
+     * @brief textEnableFlag2Id1
+     */
+    int textEnableFlag2Id1{ 0 };
 
-    int unkD0{ 0 };
+    /**
+     * @brief textEnableFlag2Id2
+     */
+    int textEnableFlag2Id2{ 0 };
 
-    int unkD4{ 0 };
+    /**
+     * @brief textEnableFlag2Id3
+     */
+    int textEnableFlag2Id3{ 0 };
 
-    int unkD8{ 0 };
+    /**
+     * @brief textEnableFlag2Id4
+     */
+    int textEnableFlag2Id4{ 0 };
 
-    int unkDC{ 0 };
+    /**
+     * @brief textEnableFlag2Id5
+     */
+    int textEnableFlag2Id5{ 0 };
 
-    int unkE0{ 0 };
+    /**
+     * @brief textEnableFlag2Id6
+     */
+    int textEnableFlag2Id6{ 0 };
 
-    int unkE4{ 0 };
+    /**
+     * @brief textEnableFlag2Id7
+     */
+    int textEnableFlag2Id7{ 0 };
 
-    int unkE8{ 0 };
+    /**
+     * @brief textEnableFlag2Id8
+     */
+    int textEnableFlag2Id8{ 0 };
 
-    int unkEC{ 0 };
+    /**
+     * @brief textDisableFlag2Id1
+     */
+    int textDisableFlag2Id1{ 0 };
 
-    int unkF0{ 0 };
+    /**
+     * @brief textDisableFlag2Id2
+     */
+    int textDisableFlag2Id2{ 0 };
 
-    int unkF4{ 0 };
+    /**
+     * @brief textDisableFlag2Id3
+     */
+    int textDisableFlag2Id3{ 0 };
 
-    int unkF8{ 0 };
+    /**
+     * @brief textDisableFlag2Id4
+     */
+    int textDisableFlag2Id4{ 0 };
 
-    int unkFC{ 0 };
+    /**
+     * @brief textDisableFlag2Id5
+     */
+    int textDisableFlag2Id5{ 0 };
+
+    /**
+     * @brief textDisableFlag2Id6
+     */
+    int textDisableFlag2Id6{ 0 };
+
+    /**
+     * @brief textDisableFlag2Id7
+     */
+    int textDisableFlag2Id7{ 0 };
+
+    /**
+     * @brief textDisableFlag2Id8
+     */
+    int textDisableFlag2Id8{ 0 };
 };
 
 }; // namespace paramdef
