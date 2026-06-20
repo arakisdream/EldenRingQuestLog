@@ -54,8 +54,8 @@ struct QuestMarker {
 // Millicent's quest markers - one per step
 static const QuestMarker QUEST_MARKERS[] = {
     // Quest 8724 - Millicent
-    // Step 1: Meet at Erdtree-Gazing Hill (always show for testing)
-    { 8724, 0, 1043319206, 60, 40, 53, 50.000f, 50.000f },
+    // Step 1: Meet at Erdtree-Gazing Hill
+    { 8724, 1045349207, 1043319206, 60, 38, 51, 3.770f, 114.240f },
     // Step 2: Get Valkyrie's Prosthesis at Shaded Castle
     { 8724, 1043319206, 1045349255, 60, 39, 54, -25.700f, 13.080f },
     // Step 3: Meet at Windmill Heights
@@ -108,7 +108,7 @@ void update_markers()
         WORLD_MAP_POINT_PARAM_ST row{};
         row.dispMask00 = true;
         row.isEnableNoText = true;  // show icon even without text
-        row.iconId = 349;  // quest marker icon
+        row.iconId = 1002;          // quest marker icon
         row.textId1 = -1;
         row.areaNo = qm.areaNo;
         row.gridXNo = qm.gridXNo;
