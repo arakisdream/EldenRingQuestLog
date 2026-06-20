@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <spdlog/spdlog.h>
 
+
 using namespace from::paramdef;
 using ParamTable = from::params::ParamTable;
 using ParamRowInfo = from::params::ParamRowInfo;
@@ -228,7 +229,6 @@ void update_markers()
 void init_markers()
 {
     spdlog::info("[QUESTMARKER] Initializing");
-    g_tracked_quests.insert(8724);  // temp: hardcode Millicent for testing
     update_markers();
 }
 
