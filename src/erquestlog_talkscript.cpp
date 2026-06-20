@@ -151,6 +151,10 @@ static void ezstate_enter_state_detour(from::EzState::state *state,
         }
     }
 
+    if (state->id == 87240) {
+        spdlog::info("[QUESTLOG] Millicent submenu entered");
+    }
+
     if (state->id == 872451) {
         bool currently_tracked = erquestlog::markers::is_quest_tracked(8724);
         erquestlog::markers::set_quest_tracked(8724, !currently_tracked);
