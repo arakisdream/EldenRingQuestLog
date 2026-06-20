@@ -139,6 +139,8 @@ void erquestlog::setup_messages(std::filesystem::path folder)
     
     questlog_strings = readFileToMap(folder, language);
 
+    spdlog::info("[QUESTLOG] Loaded {} strings, 87240010 present: {}",
+        questlog_strings.size(), questlog_strings.count("87240010") > 0);
     //spdlog::info("Checking string 82350900: \"{}\"", wstringToString(questlog_strings["82350900"]));
     
     /*auto bani = esd_get_flag_value(1044399206, 9, 1);
