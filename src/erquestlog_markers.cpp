@@ -107,7 +107,7 @@ void update_markers()
         if (!is_quest_tracked(qm.quest_id)) continue;
         WORLD_MAP_POINT_PARAM_ST row{};
         row.dispMask00 = true;
-        row.iconId = 80;  // NPC marker icon
+        row.iconId = 349;  // quest marker icon
         row.areaNo = qm.areaNo;
         row.gridXNo = qm.gridXNo;
         row.gridZNo = qm.gridZNo;
