@@ -2172,7 +2172,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(millicent_q99, 50, 87249900, esd_get_flag(4183));
 OPEN_GENERIC_DIALOG_MSG(872450, millicent_q99_state, &millicent_quest_state, 87249901);
 ezs::transition millicent_q99_transition(&millicent_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 13> millicent_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(millicent_track, 51, 87240010);
+OPEN_GENERIC_DIALOG_MSG(8724051, millicent_track_state, &millicent_quest_state, 87240012);
+ezs::transition millicent_track_transition(&millicent_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 14> millicent_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, millicent_q1_args},
@@ -2184,6 +2188,7 @@ std::array<ezs::event, 13> millicent_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, millicent_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, millicent_q8_args},
     ezs::event{talk_comm::add_talk_list_data_if, millicent_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, millicent_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2200,7 +2205,7 @@ ezs::state millicent_quest_state = {
     .entry_events = millicent_quest_events,
 };
 
-std::array<ezs::transition *, 50> millicent_quest_list_transitions = {
+std::array<ezs::transition *, 51> millicent_quest_list_transitions = {
     &millicent_q1_transition,
     &millicent_q2_transition, 
     &millicent_q3_transition, 
@@ -2210,6 +2215,7 @@ std::array<ezs::transition *, 50> millicent_quest_list_transitions = {
     &millicent_q7_transition, 
     &millicent_q8_transition, 
     &millicent_q99_transition, 
+    &millicent_track_transition,
     &quest_log_return_transition,
 };
 
