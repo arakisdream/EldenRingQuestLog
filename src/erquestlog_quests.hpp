@@ -2173,7 +2173,7 @@ OPEN_GENERIC_DIALOG_MSG(872450, millicent_q99_state, &millicent_quest_state, 872
 ezs::transition millicent_q99_transition(&millicent_q99_state, evals::get_talk_list[50]);
 
 ADD_TALK_LIST_DATA_ARGS(millicent_track, 51, 87240010);
-OPEN_GENERIC_DIALOG_MSG(8724051, millicent_track_state, &millicent_quest_state, 87240012);
+OPEN_GENERIC_DIALOG_MSG(872451, millicent_track_state, &millicent_quest_state, 87240012);
 ezs::transition millicent_track_transition(&millicent_track_state, evals::get_talk_list[51]);
 
 std::array<ezs::event, 14> millicent_quest_events = {

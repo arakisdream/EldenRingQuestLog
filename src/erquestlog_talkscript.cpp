@@ -8,6 +8,7 @@
 #include <spdlog/spdlog.h>
 
 #include "erquestlog_quests.hpp"
+#include "erquestlog_markers.hpp"
 #include "modutils.hpp"
 
 static constexpr unsigned char get_talk_list_entry_result_function = 23;
@@ -148,6 +149,12 @@ static void ezstate_enter_state_detour(from::EzState::state *state,
         {
             main_menu_return_transition.target_state = state;
         }
+    }
+
+    if (state->id == 872451) {
+        bool currently_tracked = erquestlog::markers::is_quest_tracked(8724);
+        erquestlog::markers::set_quest_tracked(8724, !currently_tracked);
+        spdlog::info("[QUESTMARKER] Millicent tracking toggled: {}", !currently_tracked);
     }
 
     ezstate_enter_state(state, machine, unk);
