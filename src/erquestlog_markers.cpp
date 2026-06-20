@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "erquestlog_markers.hpp"
 #include "from/params.hpp"
 #include "from/paramdef/WORLD_MAP_POINT_PARAM_ST.hpp"
