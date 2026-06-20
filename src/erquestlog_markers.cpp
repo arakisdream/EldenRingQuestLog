@@ -54,7 +54,7 @@ struct QuestMarker {
 // Millicent's quest markers - one per step
 static const QuestMarker QUEST_MARKERS[] = {
     // Quest 8724 - Millicent
-    // Step 1: Meet at Erdtree-Gazing Hill
+    // Step 1: Meet at Erdtree-Gazing Hill (always show for testing)
     { 8724, 0, 1043319206, 60, 39, 54, -25.700f, 13.080f },
     // Step 2: Get Valkyrie's Prosthesis at Shaded Castle
     { 8724, 1043319206, 1045349255, 60, 39, 54, -25.700f, 13.080f },
@@ -107,7 +107,9 @@ void update_markers()
         if (!is_quest_tracked(qm.quest_id)) continue;
         WORLD_MAP_POINT_PARAM_ST row{};
         row.dispMask00 = true;
-        row.iconId = 1002;  // quest marker icon
+        row.isEnableNoText = true;  // show icon even without text
+        row.iconId = 1002;          // quest marker icon
+        row.textId1 = -1;
         row.areaNo = qm.areaNo;
         row.gridXNo = qm.gridXNo;
         row.gridZNo = qm.gridZNo;
@@ -203,7 +205,8 @@ void update_markers()
         locs[idx].row_id = static_cast<uint64_t>(next_id);
         locs[idx].param_offset = offset;
         locs[idx].param_end_offset = file_end;
-        memcpy(new_file + offset, &active_markers[i], DATA_SIZE);        wrap_locs[idx].row = next_id;
+        memcpy(new_file + offset, &active_markers[i], DATA_SIZE);
+        wrap_locs[idx].row = next_id;
         wrap_locs[idx].index = static_cast<int32_t>(idx);
         next_id++;
     }
