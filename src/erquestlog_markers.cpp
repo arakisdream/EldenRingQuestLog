@@ -55,7 +55,7 @@ struct QuestMarker {
 static const QuestMarker QUEST_MARKERS[] = {
     // Quest 8724 - Millicent
     // Step 1: Meet at Erdtree-Gazing Hill (always show for testing)
-    { 8724, 0, 1043319206, 60, 41, 54, 76.830f, 74.000f },
+    { 8724, 0, 1043319206, 60, 40, 53, 50.000f, 50.000f },
     // Step 2: Get Valkyrie's Prosthesis at Shaded Castle
     { 8724, 1043319206, 1045349255, 60, 39, 54, -25.700f, 13.080f },
     // Step 3: Meet at Windmill Heights
