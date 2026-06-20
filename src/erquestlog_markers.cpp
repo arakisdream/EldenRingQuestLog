@@ -202,4 +202,30 @@ void update_markers()
         locs[idx].row_id = static_cast<uint64_t>(next_id);
         locs[idx].param_offset = offset;
         locs[idx].param_end_offset = file_end;
-        memcpy(new_file + offset, &active_markers[i], DATA_SIZE);
+        memcpy(new_file + offset, &active_markers[i], DATA_SIZE);        wrap_locs[idx].row = next_id;
+        wrap_locs[idx].index = static_cast<int32_t>(idx);
+        next_id++;
+    }
+
+    // Sort by row ID
+    std::sort(locs, locs + total_rows,
+        [](const from::params::ParamRowInfo& a, const from::params::ParamRowInfo& b) {
+            return a.row_id < b.row_id;
+        });
+
+    g_expanded_param = new_file;
+    g_expanded_size = static_cast<int64_t>(param_size);
+    file_ptr_ref = new_file;
+    file_size_ref = static_cast<int64_t>(param_size);
+
+    spdlog::info("[QUESTMARKER] Injected {} quest markers", new_count);
+}
+
+void init_markers()
+{
+    spdlog::info("[QUESTMARKER] Initializing");
+    update_markers();
+}
+
+} // namespace markers
+} // namespace erquestlog
