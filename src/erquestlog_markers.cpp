@@ -109,7 +109,7 @@ void update_markers()
         WORLD_MAP_POINT_PARAM_ST row{};
         row.dispMask00 = true;
         row.isEnableNoText = true;  // show icon even without text
-        row.iconId = 349;           // quest marker icon
+        row.iconId = 348;           // quest marker icon (0-indexed: frame 349 in sprite 171)
         row.textId1 = -1;
         row.areaNo = qm.areaNo;
         row.gridXNo = qm.gridXNo;
