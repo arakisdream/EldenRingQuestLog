@@ -109,7 +109,7 @@ void update_markers()
         WORLD_MAP_POINT_PARAM_ST row{};
         row.dispMask00 = true;
         row.isEnableNoText = true;  // show icon even without text
-        row.iconId = 348;           // quest marker icon (0-indexed: frame 349 in sprite 171)
+        row.iconId = 349;           // quest marker icon frame in sprite 171
         row.textId1 = -1;
         row.areaNo = qm.areaNo;
         row.gridXNo = qm.gridXNo;
@@ -131,16 +131,25 @@ void update_markers()
     auto* old_table = reinterpret_cast<ParamTable*>(old_file);
     uint16_t orig_rows = old_table->num_rows;
 
-    // Log vanilla rows with non-zero iconId to find valid icon values
-    int logged = 0;
-    for (uint16_t i = 0; i < orig_rows && logged < 10; i++) {
-        auto* row_data = reinterpret_cast<WORLD_MAP_POINT_PARAM_ST*>(old_file + old_table->rows[i].param_offset);
-        if (row_data->iconId != 0) {
-            spdlog::info("[QUESTMARKER] vanilla row {} id={} iconId={} distViewIconId={}", i, (int)old_table->rows[i].row_id, row_data->iconId, row_data->distViewIconId);
-            logged++;
+    // Verify struct layout: log offset and raw bytes around iconId
+    {
+        WORLD_MAP_POINT_PARAM_ST probe{};
+        probe.iconId = 0xABCD;
+        const uint8_t* base = reinterpret_cast<const uint8_t*>(&probe);
+        size_t iconid_off = 0;
+        for (size_t b = 0; b + 1 < sizeof(probe); b++) {
+            if (base[b] == 0xCD && base[b+1] == 0xAB) { iconid_off = b; break; }
+        }
+        spdlog::info("[QUESTMARKER] iconId compiler offset={}", iconid_off);
+
+        // Dump raw bytes 8-20 of first 3 vanilla rows
+        for (int r = 0; r < 3 && r < orig_rows; r++) {
+            const uint8_t* rd = old_file + old_table->rows[r].param_offset;
+            spdlog::info("[QUESTMARKER] row[{}] id={} bytes[8..19]: {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x}",
+                r, (int)old_table->rows[r].row_id,
+                rd[8],rd[9],rd[10],rd[11],rd[12],rd[13],rd[14],rd[15],rd[16],rd[17],rd[18],rd[19]);
         }
     }
-    if (logged == 0) spdlog::info("[QUESTMARKER] all {} vanilla rows have iconId=0", orig_rows);
 
     // Save vanilla state once
     if (!g_vanilla_param) {
