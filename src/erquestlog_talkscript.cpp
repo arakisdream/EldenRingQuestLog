@@ -152,7 +152,15 @@ static void ezstate_enter_state_detour(from::EzState::state *state,
     }
 
     if (state->id == 87240) {
-        spdlog::info("[QUESTLOG] Millicent submenu entered");
+        spdlog::info("[QUESTLOG] Millicent submenu entered, entry_events count: {}",
+            state->entry_events.size());
+        for (int i = 0; i < (int)state->entry_events.size(); i++) {
+            spdlog::info("[QUESTLOG]   event[{}] cmd bank={} id={} args={}",
+                i,
+                state->entry_events[i].command.bank,
+                state->entry_events[i].command.id,
+                state->entry_events[i].args.size());
+        }
     }
 
     if (state->id == 872451) {
