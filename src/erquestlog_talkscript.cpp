@@ -151,15 +151,6 @@ static void ezstate_enter_state_detour(from::EzState::state *state,
         }
     }
 
-    if (state->id == 87240) {
-        spdlog::info("[QUESTLOG] state ptr: {}, &millicent_quest_state: {}",
-            (void*)state, (void*)&millicent_quest_state);
-        spdlog::info("[QUESTLOG] entry_events data: {}, size: {}",
-            (void*)state->entry_events.data(), state->entry_events.size());
-        spdlog::info("[QUESTLOG] millicent_quest_events data: {}, array size: {}",
-            (void*)millicent_quest_events.data(), millicent_quest_events.size());
-    }
-
     if (state->id == 872451) {
         bool currently_tracked = erquestlog::markers::is_quest_tracked(8724);
         erquestlog::markers::set_quest_tracked(8724, !currently_tracked);

@@ -62,9 +62,7 @@ static const wchar_t *msg_repository_lookup_entry_detour(from::CS::MsgRepository
         auto result = questlog_strings.find(std::to_string(msg_id));
         if (result != questlog_strings.end())
         {
-            if (msg_id == 87240010 || msg_id == 87240012)
-                spdlog::info("[QUESTLOG] msg lookup hit: {}", msg_id);
-            return result->second.data();
+                return result->second.data();
         }
     }
 
@@ -139,8 +137,6 @@ void erquestlog::setup_messages(std::filesystem::path folder)
     
     questlog_strings = readFileToMap(folder, language);
 
-    spdlog::info("[QUESTLOG] Loaded {} strings, 87240010 present: {}",
-        questlog_strings.size(), questlog_strings.count("87240010") > 0);
     //spdlog::info("Checking string 82350900: \"{}\"", wstringToString(questlog_strings["82350900"]));
     
     /*auto bani = esd_get_flag_value(1044399206, 9, 1);
