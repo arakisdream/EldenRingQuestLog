@@ -131,6 +131,12 @@ void update_markers()
     auto* old_table = reinterpret_cast<ParamTable*>(old_file);
     uint16_t orig_rows = old_table->num_rows;
 
+    // Log first 5 vanilla iconId values to understand valid range
+    for (uint16_t i = 0; i < std::min<uint16_t>(orig_rows, 5); i++) {
+        auto* row_data = reinterpret_cast<WORLD_MAP_POINT_PARAM_ST*>(old_file + old_table->rows[i].param_offset);
+        spdlog::info("[QUESTMARKER] vanilla row {} id={} iconId={}", i, old_table->rows[i].row_id, row_data->iconId);
+    }
+
     // Save vanilla state once
     if (!g_vanilla_param) {
         g_vanilla_param = old_file;
