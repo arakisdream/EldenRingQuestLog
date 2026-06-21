@@ -94,13 +94,18 @@ ADD_TALK_LIST_IF_DATA_ARGS(irina_q4, 4, 87010400, esd_get_flag(1045349252));
 OPEN_GENERIC_DIALOG_MSG(870104, irina_q4_state, &irina_quest_state, 87010401);
 ezs::transition irina_q4_transition(&irina_q4_state, evals::get_talk_list[4]);
 
-std::array<ezs::event, 8> irina_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(irina_track, 51, 87010010);
+OPEN_GENERIC_DIALOG_MSG(870151, irina_track_state, &irina_quest_state, 87010012);
+ezs::transition irina_track_transition(&irina_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 9> irina_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, irina_q1_args},
     ezs::event{talk_comm::add_talk_list_data_if, irina_q2_args},
     ezs::event{talk_comm::add_talk_list_data_if, irina_q3_args},
     ezs::event{talk_comm::add_talk_list_data_if, irina_q4_args},
+    ezs::event{talk_comm::add_talk_list_data, irina_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -117,11 +122,12 @@ ezs::state irina_quest_state = {
     .entry_events = irina_quest_events,
 };
 
-std::array<ezs::transition *, 50> irina_quest_list_transitions = {
+std::array<ezs::transition *, 51> irina_quest_list_transitions = {
     &irina_q1_transition,
     &irina_q2_transition, 
     &irina_q3_transition, 
     &irina_q4_transition, 
+    &irina_track_transition,
     &quest_log_return_transition,
 };
 
@@ -165,7 +171,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(roderika_q6, 6, 87020600, esd_get_flag(3708));
 OPEN_GENERIC_DIALOG_MSG(870206, roderika_q6_state, &roderika_quest_state, 87020601);
 ezs::transition roderika_q6_transition(&roderika_q6_state, evals::get_talk_list[6]);
 
-std::array<ezs::event, 10> roderika_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(roderika_track, 51, 87020010);
+OPEN_GENERIC_DIALOG_MSG(870251, roderika_track_state, &roderika_quest_state, 87020012);
+ezs::transition roderika_track_transition(&roderika_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 11> roderika_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, roderika_q1_args},
@@ -174,6 +184,7 @@ std::array<ezs::event, 10> roderika_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, roderika_q4_args},
     ezs::event{talk_comm::add_talk_list_data_if, roderika_q5_args},
     ezs::event{talk_comm::add_talk_list_data_if, roderika_q6_args},
+    ezs::event{talk_comm::add_talk_list_data, roderika_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -190,13 +201,14 @@ ezs::state roderika_quest_state = {
     .entry_events = roderika_quest_events,
 };
 
-std::array<ezs::transition *, 50> roderika_quest_list_transitions = {
+std::array<ezs::transition *, 51> roderika_quest_list_transitions = {
     &roderika_q1_transition,
     &roderika_q2_transition, 
     &roderika_q3_transition, 
     &roderika_q4_transition, 
     &roderika_q5_transition, 
     &roderika_q6_transition, 
+    &roderika_track_transition,
     &quest_log_return_transition,
 };
 
@@ -251,7 +263,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(sellen_q99, 50, 87039900, esd_get_flag(3463));
 OPEN_GENERIC_DIALOG_MSG(870350, sellen_q99_state, &sellen_quest_state, 87039901);
 ezs::transition sellen_q99_transition(&sellen_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 13> sellen_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(sellen_track, 51, 87030010);
+OPEN_GENERIC_DIALOG_MSG(870351, sellen_track_state, &sellen_quest_state, 87030012);
+ezs::transition sellen_track_transition(&sellen_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 14> sellen_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, sellen_q1_args},
@@ -263,6 +279,7 @@ std::array<ezs::event, 13> sellen_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, sellen_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, sellen_q8_args},
     ezs::event{talk_comm::add_talk_list_data_if, sellen_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, sellen_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -279,7 +296,7 @@ ezs::state sellen_quest_state = {
     .entry_events = sellen_quest_events,
 };
 
-std::array<ezs::transition *, 50> sellen_quest_list_transitions = {
+std::array<ezs::transition *, 51> sellen_quest_list_transitions = {
     &sellen_q1_transition,
     &sellen_q2_transition, 
     &sellen_q3_transition, 
@@ -289,6 +306,7 @@ std::array<ezs::transition *, 50> sellen_quest_list_transitions = {
     &sellen_q7_transition, 
     &sellen_q8_transition, 
     &sellen_q99_transition, 
+    &sellen_track_transition,
     &quest_log_return_transition,
 };
 
@@ -331,7 +349,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(kenneth_q99, 50, 87049900, esd_get_flag(3583));
 OPEN_GENERIC_DIALOG_MSG(870450, kenneth_q99_state, &kenneth_quest_state, 87049901);
 ezs::transition kenneth_q99_transition(&kenneth_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 10> kenneth_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(kenneth_track, 51, 87040010);
+OPEN_GENERIC_DIALOG_MSG(870451, kenneth_track_state, &kenneth_quest_state, 87040012);
+ezs::transition kenneth_track_transition(&kenneth_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 11> kenneth_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, kenneth_q1_args},
@@ -340,6 +362,7 @@ std::array<ezs::event, 10> kenneth_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, kenneth_q4_args},
     ezs::event{talk_comm::add_talk_list_data_if, kenneth_q5_args},
     ezs::event{talk_comm::add_talk_list_data_if, kenneth_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, kenneth_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -356,13 +379,14 @@ ezs::state kenneth_quest_state = {
     .entry_events = kenneth_quest_events,
 };
 
-std::array<ezs::transition *, 50> kenneth_quest_list_transitions = {
+std::array<ezs::transition *, 51> kenneth_quest_list_transitions = {
     &kenneth_q1_transition,
     &kenneth_q2_transition, 
     &kenneth_q3_transition, 
     &kenneth_q4_transition, 
     &kenneth_q5_transition, 
     &kenneth_q99_transition, 
+    &kenneth_track_transition,
     &quest_log_return_transition,
 };
 
@@ -413,7 +437,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(boc_q99, 50, 87059900, esd_get_flag(3943));
 OPEN_GENERIC_DIALOG_MSG(870550, boc_q99_state, &boc_quest_state, 87059901);
 ezs::transition boc_q99_transition(&boc_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 12> boc_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(boc_track, 51, 87050010);
+OPEN_GENERIC_DIALOG_MSG(870551, boc_track_state, &boc_quest_state, 87050012);
+ezs::transition boc_track_transition(&boc_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 13> boc_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, boc_q1_args},
@@ -424,6 +452,7 @@ std::array<ezs::event, 12> boc_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, boc_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, boc_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, boc_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, boc_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -440,7 +469,7 @@ ezs::state boc_quest_state = {
     .entry_events = boc_quest_events,
 };
 
-std::array<ezs::transition *, 50> boc_quest_list_transitions = {
+std::array<ezs::transition *, 51> boc_quest_list_transitions = {
     &boc_q1_transition,
     &boc_q2_transition, 
     &boc_q3_transition, 
@@ -449,6 +478,7 @@ std::array<ezs::transition *, 50> boc_quest_list_transitions = {
     &boc_q6_transition, 
     &boc_q7_transition, 
     &boc_q99_transition, 
+    &boc_track_transition,
     &quest_log_return_transition,
 };
 
@@ -499,7 +529,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(blaidd_q99, 50, 87069900, esd_get_flag(3603));
 OPEN_GENERIC_DIALOG_MSG(870650, blaidd_q99_state, &blaidd_quest_state, 87069901);
 ezs::transition blaidd_q99_transition(&blaidd_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 12> blaidd_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(blaidd_track, 51, 87060010);
+OPEN_GENERIC_DIALOG_MSG(870651, blaidd_track_state, &blaidd_quest_state, 87060012);
+ezs::transition blaidd_track_transition(&blaidd_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 13> blaidd_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, blaidd_q1_args},
@@ -510,6 +544,7 @@ std::array<ezs::event, 12> blaidd_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, blaidd_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, blaidd_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, blaidd_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, blaidd_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -526,7 +561,7 @@ ezs::state blaidd_quest_state = {
     .entry_events = blaidd_quest_events,
 };
 
-std::array<ezs::transition *, 50> blaidd_quest_list_transitions = {
+std::array<ezs::transition *, 51> blaidd_quest_list_transitions = {
     &blaidd_q1_transition,
     &blaidd_q2_transition, 
     &blaidd_q3_transition, 
@@ -535,6 +570,7 @@ std::array<ezs::transition *, 50> blaidd_quest_list_transitions = {
     &blaidd_q6_transition, 
     &blaidd_q7_transition, 
     &blaidd_q99_transition, 
+    &blaidd_track_transition,
     &quest_log_return_transition,
 };
 
@@ -565,12 +601,17 @@ ADD_TALK_LIST_IF_DATA_ARGS(thops_q99, 50, 87079900, esd_get_flag(3803));
 OPEN_GENERIC_DIALOG_MSG(870750, thops_q99_state, &thops_quest_state, 87079901);
 ezs::transition thops_q99_transition(&thops_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 7> thops_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(thops_track, 51, 87070010);
+OPEN_GENERIC_DIALOG_MSG(870751, thops_track_state, &thops_quest_state, 87070012);
+ezs::transition thops_track_transition(&thops_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 8> thops_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, thops_q1_args},
     ezs::event{talk_comm::add_talk_list_data_if, thops_q2_args},
     ezs::event{talk_comm::add_talk_list_data_if, thops_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, thops_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -587,10 +628,11 @@ ezs::state thops_quest_state = {
     .entry_events = thops_quest_events,
 };
 
-std::array<ezs::transition *, 50> thops_quest_list_transitions = {
+std::array<ezs::transition *, 51> thops_quest_list_transitions = {
     &thops_q1_transition,
     &thops_q2_transition, 
     &thops_q99_transition, 
+    &thops_track_transition,
     &quest_log_return_transition,
 };
 
@@ -649,7 +691,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(patches_q99, 50, 87089900, esd_get_flag(3683));
 OPEN_GENERIC_DIALOG_MSG(870850, patches_q99_state, &patches_quest_state, 87089901);
 ezs::transition patches_q99_transition(&patches_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 14> patches_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(patches_track, 51, 87080010);
+OPEN_GENERIC_DIALOG_MSG(870851, patches_track_state, &patches_quest_state, 87080012);
+ezs::transition patches_track_transition(&patches_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 15> patches_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, patches_q1_args},
@@ -662,6 +708,7 @@ std::array<ezs::event, 14> patches_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, patches_q8_args},
     ezs::event{talk_comm::add_talk_list_data_if, patches_q9_args},
     ezs::event{talk_comm::add_talk_list_data_if, patches_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, patches_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -678,7 +725,7 @@ ezs::state patches_quest_state = {
     .entry_events = patches_quest_events,
 };
 
-std::array<ezs::transition *, 50> patches_quest_list_transitions = {
+std::array<ezs::transition *, 51> patches_quest_list_transitions = {
     &patches_q1_transition,
     &patches_q2_transition, 
     &patches_q3_transition, 
@@ -689,6 +736,7 @@ std::array<ezs::transition *, 50> patches_quest_list_transitions = {
     &patches_q8_transition, 
     &patches_q9_transition, 
     &patches_q99_transition, 
+    &patches_track_transition,
     &quest_log_return_transition,
 };
 
@@ -763,7 +811,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(ranni_q99, 50, 87099900, esd_get_flag(1034502742));
 OPEN_GENERIC_DIALOG_MSG(870950, ranni_q99_state, &ranni_quest_state, 87099901);
 ezs::transition ranni_q99_transition(&ranni_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 18> ranni_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(ranni_track, 51, 87090010);
+OPEN_GENERIC_DIALOG_MSG(870951, ranni_track_state, &ranni_quest_state, 87090012);
+ezs::transition ranni_track_transition(&ranni_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 19> ranni_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, ranni_q1_args},
@@ -780,6 +832,7 @@ std::array<ezs::event, 18> ranni_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, ranni_q12_args},
     ezs::event{talk_comm::add_talk_list_data_if, ranni_q13_args},
     ezs::event{talk_comm::add_talk_list_data_if, ranni_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, ranni_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -796,7 +849,7 @@ ezs::state ranni_quest_state = {
     .entry_events = ranni_quest_events,
 };
 
-std::array<ezs::transition *, 50> ranni_quest_list_transitions = {
+std::array<ezs::transition *, 51> ranni_quest_list_transitions = {
     &ranni_q1_transition,
     &ranni_q2_transition, 
     &ranni_q3_transition, 
@@ -811,6 +864,7 @@ std::array<ezs::transition *, 50> ranni_quest_list_transitions = {
     &ranni_q12_transition, 
     &ranni_q13_transition, 
     &ranni_q99_transition, 
+    &ranni_track_transition,
     &quest_log_return_transition,
 };
 
@@ -885,7 +939,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(rya_q99, 50, 87109900, esd_get_flag(3429));
 OPEN_GENERIC_DIALOG_MSG(871050, rya_q99_state, &rya_quest_state, 87109901);
 ezs::transition rya_q99_transition(&rya_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 18> rya_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(rya_track, 51, 87100010);
+OPEN_GENERIC_DIALOG_MSG(871051, rya_track_state, &rya_quest_state, 87100012);
+ezs::transition rya_track_transition(&rya_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 19> rya_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, rya_q1_args},
@@ -902,6 +960,7 @@ std::array<ezs::event, 18> rya_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, rya_q12_args},
     ezs::event{talk_comm::add_talk_list_data_if, rya_q13_args},
     ezs::event{talk_comm::add_talk_list_data_if, rya_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, rya_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -918,7 +977,7 @@ ezs::state rya_quest_state = {
     .entry_events = rya_quest_events,
 };
 
-std::array<ezs::transition *, 50> rya_quest_list_transitions = {
+std::array<ezs::transition *, 51> rya_quest_list_transitions = {
     &rya_q1_transition,
     &rya_q2_transition, 
     &rya_q3_transition, 
@@ -933,6 +992,7 @@ std::array<ezs::transition *, 50> rya_quest_list_transitions = {
     &rya_q12_transition, 
     &rya_q13_transition, 
     &rya_q99_transition, 
+    &rya_track_transition,
     &quest_log_return_transition,
 };
 
@@ -995,7 +1055,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(gowry_q99, 50, 87119900, esd_get_flag(3429));
 OPEN_GENERIC_DIALOG_MSG(871150, gowry_q99_state, &gowry_quest_state, 87119901);
 ezs::transition gowry_q99_transition(&gowry_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 15> gowry_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(gowry_track, 51, 87110010);
+OPEN_GENERIC_DIALOG_MSG(871151, gowry_track_state, &gowry_quest_state, 87110012);
+ezs::transition gowry_track_transition(&gowry_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 16> gowry_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, gowry_q1_args},
@@ -1009,6 +1073,7 @@ std::array<ezs::event, 15> gowry_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, gowry_q9_args},
     ezs::event{talk_comm::add_talk_list_data_if, gowry_q10_args},
     ezs::event{talk_comm::add_talk_list_data_if, gowry_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, gowry_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1025,7 +1090,7 @@ ezs::state gowry_quest_state = {
     .entry_events = gowry_quest_events,
 };
 
-std::array<ezs::transition *, 50> gowry_quest_list_transitions = {
+std::array<ezs::transition *, 51> gowry_quest_list_transitions = {
     &gowry_q1_transition,
     &gowry_q2_transition, 
     &gowry_q3_transition, 
@@ -1037,6 +1102,7 @@ std::array<ezs::transition *, 50> gowry_quest_list_transitions = {
     &gowry_q9_transition, 
     &gowry_q10_transition, 
     &gowry_q99_transition, 
+    &gowry_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1087,7 +1153,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(d_q99, 50, 87129900, esd_get_flag(3429));
 OPEN_GENERIC_DIALOG_MSG(871250, d_q99_state, &d_quest_state, 87129901);
 ezs::transition d_q99_transition(&d_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 12> d_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(d_track, 51, 87120010);
+OPEN_GENERIC_DIALOG_MSG(871251, d_track_state, &d_quest_state, 87120012);
+ezs::transition d_track_transition(&d_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 13> d_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, d_q1_args},
@@ -1098,6 +1168,7 @@ std::array<ezs::event, 12> d_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, d_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, d_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, d_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, d_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1114,7 +1185,7 @@ ezs::state d_quest_state = {
     .entry_events = d_quest_events,
 };
 
-std::array<ezs::transition *, 50> d_quest_list_transitions = {
+std::array<ezs::transition *, 51> d_quest_list_transitions = {
     &d_q1_transition,
     &d_q2_transition, 
     &d_q3_transition, 
@@ -1123,6 +1194,7 @@ std::array<ezs::transition *, 50> d_quest_list_transitions = {
     &d_q6_transition, 
     &d_q7_transition, 
     &d_q99_transition, 
+    &d_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1186,7 +1258,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(gurranq_q11, 11, 87130300, esd_get_flag_value(1051439
 OPEN_GENERIC_DIALOG_MSG(871311, gurranq_q11_state, &gurranq_quest_state, 87130301);
 ezs::transition gurranq_q11_transition(&gurranq_q11_state, evals::get_talk_list[11]);
 
-std::array<ezs::event, 15> gurranq_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(gurranq_track, 51, 87130010);
+OPEN_GENERIC_DIALOG_MSG(871351, gurranq_track_state, &gurranq_quest_state, 87130012);
+ezs::transition gurranq_track_transition(&gurranq_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 16> gurranq_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data_if, gurranq_q1_args},
@@ -1200,6 +1276,7 @@ std::array<ezs::event, 15> gurranq_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, gurranq_q9_args},
     ezs::event{talk_comm::add_talk_list_data_if, gurranq_q10_args},
     ezs::event{talk_comm::add_talk_list_data_if, gurranq_q11_args},
+    ezs::event{talk_comm::add_talk_list_data, gurranq_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1216,7 +1293,7 @@ ezs::state gurranq_quest_state = {
     .entry_events = gurranq_quest_events,
 };
 
-std::array<ezs::transition *, 50> gurranq_quest_list_transitions = {
+std::array<ezs::transition *, 51> gurranq_quest_list_transitions = {
     &gurranq_q1_transition,
     &gurranq_q2_transition, 
     &gurranq_q3_transition, 
@@ -1228,6 +1305,7 @@ std::array<ezs::transition *, 50> gurranq_quest_list_transitions = {
     &gurranq_q9_transition, 
     &gurranq_q10_transition, 
     &gurranq_q11_transition, 
+    &gurranq_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1282,7 +1360,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(diallos_q99, 50, 87149900, esd_get_flag(3443));
 OPEN_GENERIC_DIALOG_MSG(871450, diallos_q99_state, &diallos_quest_state, 87149901);
 ezs::transition diallos_q99_transition(&diallos_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 13> diallos_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(diallos_track, 51, 87140010);
+OPEN_GENERIC_DIALOG_MSG(871451, diallos_track_state, &diallos_quest_state, 87140012);
+ezs::transition diallos_track_transition(&diallos_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 14> diallos_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, diallos_q1_args},
@@ -1294,6 +1376,7 @@ std::array<ezs::event, 13> diallos_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, diallos_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, diallos_q8_args},
     ezs::event{talk_comm::add_talk_list_data_if, diallos_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, diallos_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1310,7 +1393,7 @@ ezs::state diallos_quest_state = {
     .entry_events = diallos_quest_events,
 };
 
-std::array<ezs::transition *, 50> diallos_quest_list_transitions = {
+std::array<ezs::transition *, 51> diallos_quest_list_transitions = {
     &diallos_q1_transition,
     &diallos_q2_transition, 
     &diallos_q3_transition, 
@@ -1320,6 +1403,7 @@ std::array<ezs::transition *, 50> diallos_quest_list_transitions = {
     &diallos_q7_transition, 
     &diallos_q8_transition, 
     &diallos_q99_transition, 
+    &diallos_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1382,7 +1466,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(seluvis_q99, 50, 87159900, esd_get_flag(1034509302));
 OPEN_GENERIC_DIALOG_MSG(871550, seluvis_q99_state, &seluvis_quest_state, 87159901);
 ezs::transition seluvis_q99_transition(&seluvis_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 15> seluvis_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(seluvis_track, 51, 87150010);
+OPEN_GENERIC_DIALOG_MSG(871551, seluvis_track_state, &seluvis_quest_state, 87150012);
+ezs::transition seluvis_track_transition(&seluvis_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 16> seluvis_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, seluvis_q1_args},
@@ -1396,6 +1484,7 @@ std::array<ezs::event, 15> seluvis_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, seluvis_q9_args},
     ezs::event{talk_comm::add_talk_list_data_if, seluvis_q10_args},
     ezs::event{talk_comm::add_talk_list_data_if, seluvis_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, seluvis_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1412,7 +1501,7 @@ ezs::state seluvis_quest_state = {
     .entry_events = seluvis_quest_events,
 };
 
-std::array<ezs::transition *, 50> seluvis_quest_list_transitions = {
+std::array<ezs::transition *, 51> seluvis_quest_list_transitions = {
     &seluvis_q1_transition,
     &seluvis_q2_transition, 
     &seluvis_q3_transition, 
@@ -1424,6 +1513,7 @@ std::array<ezs::transition *, 50> seluvis_quest_list_transitions = {
     &seluvis_q9_transition, 
     &seluvis_q10_transition, 
     &seluvis_q99_transition, 
+    &seluvis_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1470,7 +1560,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(dungeater_q99, 50, 87169900, esd_get_flag(1034509302)
 OPEN_GENERIC_DIALOG_MSG(871650, dungeater_q99_state, &dungeater_quest_state, 87169901);
 ezs::transition dungeater_q99_transition(&dungeater_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 11> dungeater_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(dungeater_track, 51, 87160010);
+OPEN_GENERIC_DIALOG_MSG(871651, dungeater_track_state, &dungeater_quest_state, 87160012);
+ezs::transition dungeater_track_transition(&dungeater_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 12> dungeater_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, dungeater_q1_args},
@@ -1480,6 +1574,7 @@ std::array<ezs::event, 11> dungeater_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, dungeater_q5_args},
     ezs::event{talk_comm::add_talk_list_data_if, dungeater_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, dungeater_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, dungeater_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1496,7 +1591,7 @@ ezs::state dungeater_quest_state = {
     .entry_events = dungeater_quest_events,
 };
 
-std::array<ezs::transition *, 50> dungeater_quest_list_transitions = {
+std::array<ezs::transition *, 51> dungeater_quest_list_transitions = {
     &dungeater_q1_transition,
     &dungeater_q2_transition, 
     &dungeater_q3_transition, 
@@ -1504,6 +1599,7 @@ std::array<ezs::transition *, 50> dungeater_quest_list_transitions = {
     &dungeater_q5_transition, 
     &dungeater_q6_transition, 
     &dungeater_q99_transition, 
+    &dungeater_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1566,7 +1662,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(rogier_q99, 50, 87179900, esd_get_flag(3903));
 OPEN_GENERIC_DIALOG_MSG(871750, rogier_q99_state, &rogier_quest_state, 87179901);
 ezs::transition rogier_q99_transition(&rogier_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 15> rogier_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(rogier_track, 51, 87170010);
+OPEN_GENERIC_DIALOG_MSG(871751, rogier_track_state, &rogier_quest_state, 87170012);
+ezs::transition rogier_track_transition(&rogier_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 16> rogier_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, rogier_q1_args},
@@ -1580,6 +1680,7 @@ std::array<ezs::event, 15> rogier_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, rogier_q9_args},
     ezs::event{talk_comm::add_talk_list_data_if, rogier_q10_args},
     ezs::event{talk_comm::add_talk_list_data_if, rogier_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, rogier_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1596,7 +1697,7 @@ ezs::state rogier_quest_state = {
     .entry_events = rogier_quest_events,
 };
 
-std::array<ezs::transition *, 50> rogier_quest_list_transitions = {
+std::array<ezs::transition *, 51> rogier_quest_list_transitions = {
     &rogier_q1_transition,
     &rogier_q2_transition, 
     &rogier_q3_transition, 
@@ -1608,6 +1709,7 @@ std::array<ezs::transition *, 50> rogier_quest_list_transitions = {
     &rogier_q9_transition, 
     &rogier_q10_transition, 
     &rogier_q99_transition, 
+    &rogier_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1662,7 +1764,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(nepheli_q99, 50, 87189900, esd_get_flag(4223));
 OPEN_GENERIC_DIALOG_MSG(871850, nepheli_q99_state, &nepheli_quest_state, 87189901);
 ezs::transition nepheli_q99_transition(&nepheli_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 13> nepheli_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(nepheli_track, 51, 87180010);
+OPEN_GENERIC_DIALOG_MSG(871851, nepheli_track_state, &nepheli_quest_state, 87180012);
+ezs::transition nepheli_track_transition(&nepheli_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 14> nepheli_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data_if, nepheli_q1_args},
@@ -1674,6 +1780,7 @@ std::array<ezs::event, 13> nepheli_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, nepheli_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, nepheli_q8_args},
     ezs::event{talk_comm::add_talk_list_data_if, nepheli_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, nepheli_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1690,7 +1797,7 @@ ezs::state nepheli_quest_state = {
     .entry_events = nepheli_quest_events,
 };
 
-std::array<ezs::transition *, 50> nepheli_quest_list_transitions = {
+std::array<ezs::transition *, 51> nepheli_quest_list_transitions = {
     &nepheli_q1_transition,
     &nepheli_q2_transition, 
     &nepheli_q3_transition, 
@@ -1700,6 +1807,7 @@ std::array<ezs::transition *, 50> nepheli_quest_list_transitions = {
     &nepheli_q7_transition, 
     &nepheli_q8_transition, 
     &nepheli_q99_transition, 
+    &nepheli_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1750,7 +1858,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(hyetta_q99, 50, 87199900, esd_get_flag(3383));
 OPEN_GENERIC_DIALOG_MSG(871950, hyetta_q99_state, &hyetta_quest_state, 87199901);
 ezs::transition hyetta_q99_transition(&hyetta_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 12> hyetta_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(hyetta_track, 51, 87190010);
+OPEN_GENERIC_DIALOG_MSG(871951, hyetta_track_state, &hyetta_quest_state, 87190012);
+ezs::transition hyetta_track_transition(&hyetta_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 13> hyetta_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, hyetta_q1_args},
@@ -1761,6 +1873,7 @@ std::array<ezs::event, 12> hyetta_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, hyetta_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, hyetta_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, hyetta_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, hyetta_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1777,7 +1890,7 @@ ezs::state hyetta_quest_state = {
     .entry_events = hyetta_quest_events,
 };
 
-std::array<ezs::transition *, 50> hyetta_quest_list_transitions = {
+std::array<ezs::transition *, 51> hyetta_quest_list_transitions = {
     &hyetta_q1_transition,
     &hyetta_q2_transition, 
     &hyetta_q3_transition, 
@@ -1786,6 +1899,7 @@ std::array<ezs::transition *, 50> hyetta_quest_list_transitions = {
     &hyetta_q6_transition, 
     &hyetta_q7_transition, 
     &hyetta_q99_transition, 
+    &hyetta_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1840,7 +1954,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(alexander_q99, 50, 87209900, esd_or(esd_get_flag(1300
 OPEN_GENERIC_DIALOG_MSG(872050, alexander_q99_state, &alexander_quest_state, 87209901);
 ezs::transition alexander_q99_transition(&alexander_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 13> alexander_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(alexander_track, 51, 87200010);
+OPEN_GENERIC_DIALOG_MSG(872051, alexander_track_state, &alexander_quest_state, 87200012);
+ezs::transition alexander_track_transition(&alexander_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 14> alexander_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, alexander_q1_args},
@@ -1852,6 +1970,7 @@ std::array<ezs::event, 13> alexander_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, alexander_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, alexander_q8_args},
     ezs::event{talk_comm::add_talk_list_data_if, alexander_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, alexander_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1868,7 +1987,7 @@ ezs::state alexander_quest_state = {
     .entry_events = alexander_quest_events,
 };
 
-std::array<ezs::transition *, 50> alexander_quest_list_transitions = {
+std::array<ezs::transition *, 51> alexander_quest_list_transitions = {
     &alexander_q1_transition,
     &alexander_q2_transition, 
     &alexander_q3_transition, 
@@ -1878,6 +1997,7 @@ std::array<ezs::transition *, 50> alexander_quest_list_transitions = {
     &alexander_q7_transition, 
     &alexander_q8_transition,
     &alexander_q99_transition, 
+    &alexander_track_transition,
     &quest_log_return_transition,
 };
 
@@ -1924,7 +2044,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(yura_q99, 50, 87219900, esd_get_flag(3623));
 OPEN_GENERIC_DIALOG_MSG(872150, yura_q99_state, &yura_quest_state, 87219901);
 ezs::transition yura_q99_transition(&yura_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 11> yura_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(yura_track, 51, 87210010);
+OPEN_GENERIC_DIALOG_MSG(872151, yura_track_state, &yura_quest_state, 87210012);
+ezs::transition yura_track_transition(&yura_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 12> yura_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, yura_q1_args},
@@ -1934,6 +2058,7 @@ std::array<ezs::event, 11> yura_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, yura_q5_args},
     ezs::event{talk_comm::add_talk_list_data_if, yura_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, yura_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, yura_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -1950,7 +2075,7 @@ ezs::state yura_quest_state = {
     .entry_events = yura_quest_events,
 };
 
-std::array<ezs::transition *, 50> yura_quest_list_transitions = {
+std::array<ezs::transition *, 51> yura_quest_list_transitions = {
     &yura_q1_transition,
     &yura_q2_transition, 
     &yura_q3_transition, 
@@ -1958,6 +2083,7 @@ std::array<ezs::transition *, 50> yura_quest_list_transitions = {
     &yura_q5_transition, 
     &yura_q6_transition, 
     &yura_q99_transition, 
+    &yura_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2004,7 +2130,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(fia_q7, 7, 87220700, esd_compare_inventory(8183, 1, 0
 OPEN_GENERIC_DIALOG_MSG(872207, fia_q7_state, &fia_quest_state, 87220701);
 ezs::transition fia_q7_transition(&fia_q7_state, evals::get_talk_list[7]);
 
-std::array<ezs::event, 11> fia_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(fia_track, 51, 87220010);
+OPEN_GENERIC_DIALOG_MSG(872251, fia_track_state, &fia_quest_state, 87220012);
+ezs::transition fia_track_transition(&fia_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 12> fia_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, fia_q1_args},
@@ -2014,6 +2144,7 @@ std::array<ezs::event, 11> fia_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, fia_q5_args},
     ezs::event{talk_comm::add_talk_list_data_if, fia_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, fia_q7_args},
+    ezs::event{talk_comm::add_talk_list_data, fia_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2030,7 +2161,7 @@ ezs::state fia_quest_state = {
     .entry_events = fia_quest_events,
 };
 
-std::array<ezs::transition *, 50> fia_quest_list_transitions = {
+std::array<ezs::transition *, 51> fia_quest_list_transitions = {
     &fia_q1_transition,
     &fia_q2_transition, 
     &fia_q3_transition, 
@@ -2038,6 +2169,7 @@ std::array<ezs::transition *, 50> fia_quest_list_transitions = {
     &fia_q5_transition, 
     &fia_q6_transition, 
     &fia_q7_transition, 
+    &fia_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2084,7 +2216,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(varre_q99, 50, 87239900, esd_get_flag(3183));
 OPEN_GENERIC_DIALOG_MSG(872350, varre_q99_state, &varre_quest_state, 87239901);
 ezs::transition varre_q99_transition(&varre_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 11> varre_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(varre_track, 51, 87230010);
+OPEN_GENERIC_DIALOG_MSG(872351, varre_track_state, &varre_quest_state, 87230012);
+ezs::transition varre_track_transition(&varre_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 12> varre_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, varre_q1_args},
@@ -2094,6 +2230,7 @@ std::array<ezs::event, 11> varre_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, varre_q5_args},
     ezs::event{talk_comm::add_talk_list_data_if, varre_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, varre_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, varre_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2110,7 +2247,7 @@ ezs::state varre_quest_state = {
     .entry_events = varre_quest_events,
 };
 
-std::array<ezs::transition *, 50> varre_quest_list_transitions = {
+std::array<ezs::transition *, 51> varre_quest_list_transitions = {
     &varre_q1_transition,
     &varre_q2_transition, 
     &varre_q3_transition, 
@@ -2118,6 +2255,7 @@ std::array<ezs::transition *, 50> varre_quest_list_transitions = {
     &varre_q5_transition, 
     &varre_q6_transition, 
     &varre_q99_transition, 
+    &varre_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2254,7 +2392,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(jarbairn_q99, 50, 87259900, esd_get_flag(3823));
 OPEN_GENERIC_DIALOG_MSG(872550, jarbairn_q99_state, &jarbairn_quest_state, 87259901);
 ezs::transition jarbairn_q99_transition(&jarbairn_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 9> jarbairn_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(jarbairn_track, 51, 87250010);
+OPEN_GENERIC_DIALOG_MSG(872551, jarbairn_track_state, &jarbairn_quest_state, 87250012);
+ezs::transition jarbairn_track_transition(&jarbairn_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 10> jarbairn_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, jarbairn_q1_args},
@@ -2262,6 +2404,7 @@ std::array<ezs::event, 9> jarbairn_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, jarbairn_q3_args},
     ezs::event{talk_comm::add_talk_list_data_if, jarbairn_q4_args},
     ezs::event{talk_comm::add_talk_list_data_if, jarbairn_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, jarbairn_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2278,12 +2421,13 @@ ezs::state jarbairn_quest_state = {
     .entry_events = jarbairn_quest_events,
 };
 
-std::array<ezs::transition *, 50> jarbairn_quest_list_transitions = {
+std::array<ezs::transition *, 51> jarbairn_quest_list_transitions = {
     &jarbairn_q1_transition,
     &jarbairn_q2_transition, 
     &jarbairn_q3_transition, 
     &jarbairn_q4_transition, 
     &jarbairn_q99_transition, 
+    &jarbairn_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2346,7 +2490,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(corhyn_q99, 50, 87269900, esd_get_flag(4203));
 OPEN_GENERIC_DIALOG_MSG(872650, corhyn_q99_state, &corhyn_quest_state, 87269901);
 ezs::transition corhyn_q99_transition(&corhyn_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 15> corhyn_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(corhyn_track, 51, 87260010);
+OPEN_GENERIC_DIALOG_MSG(872651, corhyn_track_state, &corhyn_quest_state, 87260012);
+ezs::transition corhyn_track_transition(&corhyn_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 16> corhyn_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, corhyn_q1_args},
@@ -2360,6 +2508,7 @@ std::array<ezs::event, 15> corhyn_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, corhyn_q9_args},
     ezs::event{talk_comm::add_talk_list_data_if, corhyn_q10_args},
     ezs::event{talk_comm::add_talk_list_data_if, corhyn_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, corhyn_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2376,7 +2525,7 @@ ezs::state corhyn_quest_state = {
     .entry_events = corhyn_quest_events,
 };
 
-std::array<ezs::transition *, 50> corhyn_quest_list_transitions = {
+std::array<ezs::transition *, 51> corhyn_quest_list_transitions = {
     &corhyn_q1_transition,
     &corhyn_q2_transition, 
     &corhyn_q3_transition, 
@@ -2388,6 +2537,7 @@ std::array<ezs::transition *, 50> corhyn_quest_list_transitions = {
     &corhyn_q9_transition, 
     &corhyn_q10_transition, 
     &corhyn_q99_transition, 
+    &corhyn_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2426,7 +2576,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(latenna_q99, 50, 87279900, esd_get_flag(4103));
 OPEN_GENERIC_DIALOG_MSG(872750, latenna_q99_state, &latenna_quest_state, 87279901);
 ezs::transition latenna_q99_transition(&latenna_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 9> latenna_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(latenna_track, 51, 87270010);
+OPEN_GENERIC_DIALOG_MSG(872751, latenna_track_state, &latenna_quest_state, 87270012);
+ezs::transition latenna_track_transition(&latenna_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 10> latenna_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, latenna_q1_args},
@@ -2434,6 +2588,7 @@ std::array<ezs::event, 9> latenna_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, latenna_q3_args},
     ezs::event{talk_comm::add_talk_list_data_if, latenna_q4_args},
     ezs::event{talk_comm::add_talk_list_data_if, latenna_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, latenna_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2450,12 +2605,13 @@ ezs::state latenna_quest_state = {
     .entry_events = latenna_quest_events,
 };
 
-std::array<ezs::transition *, 50> latenna_quest_list_transitions = {
+std::array<ezs::transition *, 51> latenna_quest_list_transitions = {
     &latenna_q1_transition,
     &latenna_q2_transition, 
     &latenna_q3_transition, 
     &latenna_q4_transition, 
     &latenna_q99_transition, 
+    &latenna_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2510,7 +2666,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(bernahl_q99, 50, 87289900, esd_get_flag(3883));
 OPEN_GENERIC_DIALOG_MSG(872850, bernahl_q99_state, &bernahl_quest_state, 87289901);
 ezs::transition bernahl_q99_transition(&bernahl_q99_state, evals::get_talk_list[50]);
 
-std::array<ezs::event, 13> bernahl_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(bernahl_track, 51, 87280010);
+OPEN_GENERIC_DIALOG_MSG(872851, bernahl_track_state, &bernahl_quest_state, 87280012);
+ezs::transition bernahl_track_transition(&bernahl_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 14> bernahl_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data_if, bernahl_q1_args},
@@ -2522,6 +2682,7 @@ std::array<ezs::event, 13> bernahl_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, bernahl_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, bernahl_q8_args},
     ezs::event{talk_comm::add_talk_list_data_if, bernahl_q99_args},
+    ezs::event{talk_comm::add_talk_list_data, bernahl_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2538,7 +2699,7 @@ ezs::state bernahl_quest_state = {
     .entry_events = bernahl_quest_events,
 };
 
-std::array<ezs::transition *, 50> bernahl_quest_list_transitions = {
+std::array<ezs::transition *, 51> bernahl_quest_list_transitions = {
     &bernahl_q1_transition,
     &bernahl_q2_transition, 
     &bernahl_q3_transition, 
@@ -2548,6 +2709,7 @@ std::array<ezs::transition *, 50> bernahl_quest_list_transitions = {
     &bernahl_q7_transition, 
     &bernahl_q8_transition, 
     &bernahl_q99_transition, 
+    &bernahl_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2618,7 +2780,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(ansbach_q13, 13, 87291300, esd_get_flag(20019211));
 OPEN_GENERIC_DIALOG_MSG(872913, ansbach_q13_state, &ansbach_quest_state, 87291301);
 ezs::transition ansbach_q13_transition(&ansbach_q13_state, evals::get_talk_list[13]);
 
-std::array<ezs::event, 17> ansbach_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(ansbach_track, 51, 87290010);
+OPEN_GENERIC_DIALOG_MSG(872951, ansbach_track_state, &ansbach_quest_state, 87290012);
+ezs::transition ansbach_track_transition(&ansbach_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 18> ansbach_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data_if, ansbach_q1_args},
@@ -2634,6 +2800,7 @@ std::array<ezs::event, 17> ansbach_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, ansbach_q11_args},
     ezs::event{talk_comm::add_talk_list_data_if, ansbach_q12_args},
     ezs::event{talk_comm::add_talk_list_data_if, ansbach_q13_args},
+    ezs::event{talk_comm::add_talk_list_data, ansbach_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2650,7 +2817,7 @@ ezs::state ansbach_quest_state = {
     .entry_events = ansbach_quest_events,
 };
 
-std::array<ezs::transition *, 50> ansbach_quest_list_transitions = {
+std::array<ezs::transition *, 51> ansbach_quest_list_transitions = {
     &ansbach_q1_transition,
     &ansbach_q2_transition, 
     &ansbach_q3_transition, 
@@ -2664,6 +2831,7 @@ std::array<ezs::transition *, 50> ansbach_quest_list_transitions = {
     &ansbach_q11_transition, 
     &ansbach_q12_transition, 
     &ansbach_q13_transition, 
+    &ansbach_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2702,7 +2870,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(hornsent_q5, 5, 87310500, esd_get_flag(21019207));
 OPEN_GENERIC_DIALOG_MSG(873105, hornsent_q5_state, &hornsent_quest_state, 87310501);
 ezs::transition hornsent_q5_transition(&hornsent_q5_state, evals::get_talk_list[5]);
 
-std::array<ezs::event, 9> hornsent_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(hornsent_track, 51, 87310010);
+OPEN_GENERIC_DIALOG_MSG(873151, hornsent_track_state, &hornsent_quest_state, 87310012);
+ezs::transition hornsent_track_transition(&hornsent_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 10> hornsent_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, hornsent_q1_args},
@@ -2710,6 +2882,7 @@ std::array<ezs::event, 9> hornsent_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, hornsent_q3_args},
     ezs::event{talk_comm::add_talk_list_data_if, hornsent_q4_args},
     ezs::event{talk_comm::add_talk_list_data_if, hornsent_q5_args},
+    ezs::event{talk_comm::add_talk_list_data, hornsent_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2726,12 +2899,13 @@ ezs::state hornsent_quest_state = {
     .entry_events = hornsent_quest_events,
 };
 
-std::array<ezs::transition *, 50> hornsent_quest_list_transitions = {
+std::array<ezs::transition *, 51> hornsent_quest_list_transitions = {
     &hornsent_q1_transition,
     &hornsent_q2_transition, 
     &hornsent_q3_transition, 
     &hornsent_q4_transition, 
     &hornsent_q5_transition, 
+    &hornsent_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2762,12 +2936,17 @@ ADD_TALK_LIST_IF_DATA_ARGS(queelign_q3, 3, 87320300, esd_get_flag(21009211));
 OPEN_GENERIC_DIALOG_MSG(873203, queelign_q3_state, &queelign_quest_state, 87320301);
 ezs::transition queelign_q3_transition(&queelign_q3_state, evals::get_talk_list[3]);
 
-std::array<ezs::event, 7> queelign_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(queelign_track, 51, 87320010);
+OPEN_GENERIC_DIALOG_MSG(873251, queelign_track_state, &queelign_quest_state, 87320012);
+ezs::transition queelign_track_transition(&queelign_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 8> queelign_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, queelign_q1_args},
     ezs::event{talk_comm::add_talk_list_data_if, queelign_q2_args},
     ezs::event{talk_comm::add_talk_list_data_if, queelign_q3_args},
+    ezs::event{talk_comm::add_talk_list_data, queelign_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2784,10 +2963,11 @@ ezs::state queelign_quest_state = {
     .entry_events = queelign_quest_events,
 };
 
-std::array<ezs::transition *, 50> queelign_quest_list_transitions = {
+std::array<ezs::transition *, 51> queelign_quest_list_transitions = {
     &queelign_q1_transition,
     &queelign_q2_transition, 
     &queelign_q3_transition, 
+    &queelign_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2838,7 +3018,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(ymir_q8, 8, 87330800, esd_get_flag(2051459744));
 OPEN_GENERIC_DIALOG_MSG(873308, ymir_q8_state, &ymir_quest_state, 87330801);
 ezs::transition ymir_q8_transition(&ymir_q8_state, evals::get_talk_list[8]);
 
-std::array<ezs::event, 12> ymir_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(ymir_track, 51, 87330010);
+OPEN_GENERIC_DIALOG_MSG(873351, ymir_track_state, &ymir_quest_state, 87330012);
+ezs::transition ymir_track_transition(&ymir_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 13> ymir_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, ymir_q1_args},
@@ -2849,6 +3033,7 @@ std::array<ezs::event, 12> ymir_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, ymir_q6_args},
     ezs::event{talk_comm::add_talk_list_data_if, ymir_q7_args},
     ezs::event{talk_comm::add_talk_list_data_if, ymir_q8_args},
+    ezs::event{talk_comm::add_talk_list_data, ymir_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2865,7 +3050,7 @@ ezs::state ymir_quest_state = {
     .entry_events = ymir_quest_events,
 };
 
-std::array<ezs::transition *, 50> ymir_quest_list_transitions = {
+std::array<ezs::transition *, 51> ymir_quest_list_transitions = {
     &ymir_q1_transition,
     &ymir_q2_transition, 
     &ymir_q3_transition, 
@@ -2874,6 +3059,7 @@ std::array<ezs::transition *, 50> ymir_quest_list_transitions = {
     &ymir_q6_transition, 
     &ymir_q7_transition, 
     &ymir_q8_transition,  
+    &ymir_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2908,13 +3094,18 @@ ADD_TALK_LIST_IF_DATA_ARGS(igon_q4, 4, 87340400, esd_get_flag(2054399208));
 OPEN_GENERIC_DIALOG_MSG(873404, igon_q4_state, &igon_quest_state, 87340401);
 ezs::transition igon_q4_transition(&igon_q4_state, evals::get_talk_list[4]);
 
-std::array<ezs::event, 8> igon_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(igon_track, 51, 87340010);
+OPEN_GENERIC_DIALOG_MSG(873451, igon_track_state, &igon_quest_state, 87340012);
+ezs::transition igon_track_transition(&igon_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 9> igon_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data, igon_q1_args},
     ezs::event{talk_comm::add_talk_list_data_if, igon_q2_args},
     ezs::event{talk_comm::add_talk_list_data_if, igon_q3_args},
     ezs::event{talk_comm::add_talk_list_data_if, igon_q4_args},
+    ezs::event{talk_comm::add_talk_list_data, igon_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -2931,11 +3122,12 @@ ezs::state igon_quest_state = {
     .entry_events = igon_quest_events,
 };
 
-std::array<ezs::transition *, 50> igon_quest_list_transitions = {
+std::array<ezs::transition *, 51> igon_quest_list_transitions = {
     &igon_q1_transition,
     &igon_q2_transition, 
     &igon_q3_transition, 
     &igon_q4_transition, 
+    &igon_track_transition,
     &quest_log_return_transition,
 };
 
@@ -2994,7 +3186,11 @@ ADD_TALK_LIST_IF_DATA_ARGS(trina_q10, 10, 87351000, esd_get_flag(22009239));
 OPEN_GENERIC_DIALOG_MSG(8735010, trina_q10_state, &trina_quest_state, 87351001);
 ezs::transition trina_q10_transition(&trina_q10_state, evals::get_talk_list[10]);
 
-std::array<ezs::event, 14> trina_quest_events = {
+ADD_TALK_LIST_DATA_ARGS(trina_track, 51, 87350010);
+OPEN_GENERIC_DIALOG_MSG(873551, trina_track_state, &trina_quest_state, 87350012);
+ezs::transition trina_track_transition(&trina_track_state, evals::get_talk_list[51]);
+
+std::array<ezs::event, 15> trina_quest_events = {
     ezs::event{talk_comm::close_shop_message},
     ezs::event{talk_comm::clear_talk_list_data},
     ezs::event{talk_comm::add_talk_list_data_if, trina_q1_args},
@@ -3007,6 +3203,7 @@ std::array<ezs::event, 14> trina_quest_events = {
     ezs::event{talk_comm::add_talk_list_data_if, trina_q8_args},
     ezs::event{talk_comm::add_talk_list_data_if, trina_q9_args},
     ezs::event{talk_comm::add_talk_list_data_if, trina_q10_args},
+    ezs::event{talk_comm::add_talk_list_data, trina_track_args},
     ezs::event{talk_comm::add_talk_list_data, leave_args},
     ezs::event{talk_comm::show_shop_message,
                          show_generic_dialog_shop_message_arg_list},
@@ -3023,7 +3220,7 @@ ezs::state trina_quest_state = {
     .entry_events = trina_quest_events,
 };
 
-std::array<ezs::transition *, 50> trina_quest_list_transitions = {
+std::array<ezs::transition *, 51> trina_quest_list_transitions = {
     &trina_q1_transition,
     &trina_q2_transition, 
     &trina_q3_transition, 
@@ -3034,6 +3231,7 @@ std::array<ezs::transition *, 50> trina_quest_list_transitions = {
     &trina_q8_transition, 
     &trina_q9_transition, 
     &trina_q10_transition, 
+    &trina_track_transition,
     &quest_log_return_transition,
 };
 

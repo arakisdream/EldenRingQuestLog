@@ -52,15 +52,78 @@ struct QuestMarker {
     float posZ;
 };
 
-// Millicent's quest markers - one per step
+// Quest markers: one entry per quest step (coordinates filled from Smithbox WorldMapPointParam)
 static const QuestMarker QUEST_MARKERS[] = {
+    // Quest 8701 - Irina
+    { 8701, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8702 - Roderika
+    { 8702, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8703 - Sellen
+    { 8703, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8704 - Kenneth
+    { 8704, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8705 - Boc
+    { 8705, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8706 - Blaidd
+    { 8706, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8707 - Thops
+    { 8707, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8708 - Patches
+    { 8708, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8709 - Ranni
+    { 8709, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8710 - Rya
+    { 8710, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8711 - Gowry
+    { 8711, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8712 - D
+    { 8712, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8713 - Gurranq
+    { 8713, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8714 - Diallos
+    { 8714, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8715 - Seluvis
+    { 8715, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8716 - Dung Eater
+    { 8716, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8717 - Rogier
+    { 8717, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8718 - Nepheli
+    { 8718, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8719 - Hyetta
+    { 8719, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8720 - Alexander
+    { 8720, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8721 - Yura
+    { 8721, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8722 - Fia
+    { 8722, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8723 - Varré
+    { 8723, 0, 0, 0, 0, 0, 0.0f, 0.0f },
     // Quest 8724 - Millicent
-    // Step 1: Meet at Erdtree-Gazing Hill
     { 8724, 1045349207, 1043319206, 60, 38, 51, 3.770f, 114.240f },
-    // Step 2: Get Valkyrie's Prosthesis at Shaded Castle
     { 8724, 1043319206, 1045349255, 60, 39, 54, -25.700f, 13.080f },
-    // Step 3: Meet at Windmill Heights
     { 8724, 1045349255, 1045349252, 60, 41, 54, 76.830f, 74.000f },
+    // Quest 8725 - Jar-Bairn
+    { 8725, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8726 - Corhyn
+    { 8726, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8727 - Latenna
+    { 8727, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8728 - Bernahl
+    { 8728, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8729 - The Purpose of a God (Ansbach/Freyja)
+    { 8729, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8731 - Hornsent
+    { 8731, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8732 - Queelign
+    { 8732, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8733 - Ymir
+    { 8733, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8734 - Igon
+    { 8734, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8735 - Thiollier
+    { 8735, 0, 0, 0, 0, 0, 0.0f, 0.0f },
 };
 
 static ParamResCap* find_world_map_point_param()
@@ -121,35 +184,14 @@ void update_markers()
         active_markers.push_back(row);
     }
 
-    if (active_markers.empty()) {
-        spdlog::info("[QUESTMARKER] No active markers");
+    if (active_markers.empty())
         return;
-    }
 
     // Inject into WorldMapPointParam
     auto* old_file = file_ptr_ref;
     auto* old_table = reinterpret_cast<ParamTable*>(old_file);
     uint16_t orig_rows = old_table->num_rows;
 
-    // Verify struct layout: log offset and raw bytes around iconId
-    {
-        WORLD_MAP_POINT_PARAM_ST probe{};
-        probe.iconId = 0xABCD;
-        const uint8_t* base = reinterpret_cast<const uint8_t*>(&probe);
-        size_t iconid_off = 0;
-        for (size_t b = 0; b + 1 < sizeof(probe); b++) {
-            if (base[b] == 0xCD && base[b+1] == 0xAB) { iconid_off = b; break; }
-        }
-        spdlog::info("[QUESTMARKER] iconId compiler offset={}", iconid_off);
-
-        // Dump raw bytes 8-20 of first 3 vanilla rows
-        for (int r = 0; r < 3 && r < orig_rows; r++) {
-            const uint8_t* rd = old_file + old_table->rows[r].param_offset;
-            spdlog::info("[QUESTMARKER] row[{}] id={} bytes[8..19]: {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x}",
-                r, (int)old_table->rows[r].row_id,
-                rd[8],rd[9],rd[10],rd[11],rd[12],rd[13],rd[14],rd[15],rd[16],rd[17],rd[18],rd[19]);
-        }
-    }
 
     // Save vanilla state once
     if (!g_vanilla_param) {
@@ -243,12 +285,10 @@ void update_markers()
     file_ptr_ref = new_file;
     file_size_ref = static_cast<int64_t>(param_size);
 
-    spdlog::info("[QUESTMARKER] Injected {} quest markers", new_count);
 }
 
 void init_markers()
 {
-    spdlog::info("[QUESTMARKER] Initializing");
     update_markers();
 }
 

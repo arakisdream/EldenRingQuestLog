@@ -151,10 +151,14 @@ static void ezstate_enter_state_detour(from::EzState::state *state,
         }
     }
 
-    if (state->id == 872451) {
-        bool currently_tracked = erquestlog::markers::is_quest_tracked(8724);
-        erquestlog::markers::set_quest_tracked(8724, !currently_tracked);
-        spdlog::info("[QUESTMARKER] Millicent tracking toggled: {}", !currently_tracked);
+    // Tracking toggle states: state_id = quest_id * 100 + 51
+    if (state->id % 100 == 51) {
+        int quest_id = static_cast<int>(state->id / 100);
+        if (quest_id >= 8701 && quest_id <= 8735) {
+            bool tracked = erquestlog::markers::is_quest_tracked(quest_id);
+            erquestlog::markers::set_quest_tracked(quest_id, !tracked);
+            spdlog::info("[QUESTMARKER] Quest {} tracking toggled: {}", quest_id, !tracked);
+        }
     }
 
     ezstate_enter_state(state, machine, unk);
