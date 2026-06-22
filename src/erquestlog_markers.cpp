@@ -365,8 +365,11 @@ void update_markers()
 
     // Build list of active markers (tracked quest + flag conditions)
     std::vector<WORLD_MAP_POINT_PARAM_ST> active_markers;
+    std::set<int> seen_quests;
     for (const auto& qm : QUEST_MARKERS) {
         if (!is_quest_tracked(qm.quest_id)) continue;
+        bool is_first = seen_quests.find(qm.quest_id) == seen_quests.end();
+        seen_quests.insert(qm.quest_id);
         WORLD_MAP_POINT_PARAM_ST row{};
         row.dispMask00 = true;
         row.isEnableNoText = true;  // show icon even without text
@@ -377,7 +380,8 @@ void update_markers()
         row.gridZNo = qm.gridZNo;
         row.posX = qm.posX;
         row.posZ = qm.posZ;
-        row.textEnableFlagId1 = qm.enable_flag;
+        // First step always visible (flag 0 = always on); later steps show only when their flag is set
+        row.textEnableFlagId1 = is_first ? 0 : qm.enable_flag;
         row.textDisableFlagId1 = qm.disable_flag;
         active_markers.push_back(row);
     }
