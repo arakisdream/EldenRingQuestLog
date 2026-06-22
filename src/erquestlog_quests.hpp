@@ -75,6 +75,7 @@ extern ezs::state irina_quest_state;
 extern ezs::state irina_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(irina_quest, 3, 87010000, esd_get_flag(1045349207));
+ADD_TALK_LIST_IF_DATA_ARGS(irina_quest_tracked, 3, 87010001, esd_get_flag(1045349207));
 //ADD_TALK_LIST_IF_DATA_ARGS(irina_quest, 3, 87010000, esd_or(esd_get_flag(4700), esd_compare_inventory(2962, 1)));
 ezs::transition irina_quest_transition(&irina_quest_state, evals::get_talk_list[3]);
 
@@ -145,6 +146,7 @@ extern ezs::state roderika_quest_list_state;
 
 //ADD_TALK_LIST_IF_DATA_ARGS(roderika_quest, 1, 87020000, esd_or(esd_or(esd_get_flag(1041389406), esd_get_flag(1041382735)), esd_get_flag(11109255)));
 ADD_TALK_LIST_IF_DATA_ARGS(roderika_quest, 1, 87020000, esd_and(esd_get_flag(4700), esd_compare_inventory(2962, 1)));
+ADD_TALK_LIST_IF_DATA_ARGS(roderika_quest_tracked, 1, 87020001, esd_and(esd_get_flag(4700), esd_compare_inventory(2962, 1)));
 ezs::transition roderika_quest_transition(&roderika_quest_state, evals::get_talk_list[1]);
 
 ADD_TALK_LIST_DATA_ARGS(roderika_q1, 1, 87020100);
@@ -225,6 +227,7 @@ extern ezs::state sellen_quest_state;
 extern ezs::state sellen_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(sellen_quest, 2, 87030000, esd_get_flag(1044369227));
+ADD_TALK_LIST_IF_DATA_ARGS(sellen_quest_tracked, 2, 87030001, esd_get_flag(1044369227));
 ezs::transition sellen_quest_transition(&sellen_quest_state, evals::get_talk_list[2]);
 
 ADD_TALK_LIST_DATA_ARGS(sellen_q1, 1, 87030100);
@@ -323,6 +326,7 @@ extern ezs::state kenneth_quest_state;
 extern ezs::state kenneth_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(kenneth_quest, 4, 87040000, esd_get_flag(1045389205));
+ADD_TALK_LIST_IF_DATA_ARGS(kenneth_quest_tracked, 4, 87040001, esd_get_flag(1045389205));
 ezs::transition kenneth_quest_transition(&kenneth_quest_state, evals::get_talk_list[4]);
 
 ADD_TALK_LIST_DATA_ARGS(kenneth_q1, 1, 87040100);
@@ -403,6 +407,7 @@ extern ezs::state boc_quest_state;
 extern ezs::state boc_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(boc_quest, 5, 87050000, esd_get_flag(1043379355));
+ADD_TALK_LIST_IF_DATA_ARGS(boc_quest_tracked, 5, 87050001, esd_get_flag(1043379355));
 ezs::transition boc_quest_transition(&boc_quest_state, evals::get_talk_list[5]);
 
 ADD_TALK_LIST_DATA_ARGS(boc_q1, 1, 87050100);
@@ -495,6 +500,7 @@ extern ezs::state blaidd_quest_state;
 extern ezs::state blaidd_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(blaidd_quest, 6, 87060000, esd_or(esd_get_flag(1042369320), esd_get_flag(1042369328)));
+ADD_TALK_LIST_IF_DATA_ARGS(blaidd_quest_tracked, 6, 87060001, esd_or(esd_get_flag(1042369320), esd_get_flag(1042369328)));
 ezs::transition blaidd_quest_transition(&blaidd_quest_state, evals::get_talk_list[6]);
 
 ADD_TALK_LIST_DATA_ARGS(blaidd_q1, 1, 87060100);
@@ -587,6 +593,7 @@ extern ezs::state thops_quest_state;
 extern ezs::state thops_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(thops_quest, 7, 87070000, esd_get_flag(1039399215));
+ADD_TALK_LIST_IF_DATA_ARGS(thops_quest_tracked, 7, 87070001, esd_get_flag(1039399215));
 ezs::transition thops_quest_transition(&thops_quest_state, evals::get_talk_list[7]);
 
 ADD_TALK_LIST_DATA_ARGS(thops_q1, 1, 87070100);
@@ -649,6 +656,7 @@ extern ezs::state patches_quest_state;
 extern ezs::state patches_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(patches_quest, 8, 87080000, esd_or(esd_get_flag(31009206), esd_get_flag(16009357)));
+ADD_TALK_LIST_IF_DATA_ARGS(patches_quest_tracked, 8, 87080001, esd_or(esd_get_flag(31009206), esd_get_flag(16009357)));
 ezs::transition patches_quest_transition(&patches_quest_state, evals::get_talk_list[8]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(patches_q1, 1, 87080100, esd_get_flag(60819));
@@ -753,6 +761,7 @@ extern ezs::state ranni_quest_state;
 extern ezs::state ranni_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(ranni_quest, 9, 87090000, esd_or(esd_get_flag(1034509410), esd_get_flag(1034509431)));
+ADD_TALK_LIST_IF_DATA_ARGS(ranni_quest_tracked, 9, 87090001, esd_or(esd_get_flag(1034509410), esd_get_flag(1034509431)));
 ezs::transition ranni_quest_transition(&ranni_quest_state, evals::get_talk_list[9]);
 
 ADD_TALK_LIST_DATA_ARGS(ranni_q1, 1, 87090100);
@@ -881,6 +890,7 @@ extern ezs::state rya_quest_state;
 extern ezs::state rya_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(rya_quest, 10, 87100000, esd_get_flag(1037429209));
+ADD_TALK_LIST_IF_DATA_ARGS(rya_quest_tracked, 10, 87100001, esd_get_flag(1037429209));
 ezs::transition rya_quest_transition(&rya_quest_state, evals::get_talk_list[10]);
 
 ADD_TALK_LIST_DATA_ARGS(rya_q1, 1, 87100100);
@@ -1009,6 +1019,7 @@ extern ezs::state gowry_quest_state;
 extern ezs::state gowry_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(gowry_quest, 11, 87110000, esd_get_flag(1050389205));
+ADD_TALK_LIST_IF_DATA_ARGS(gowry_quest_tracked, 11, 87110001, esd_get_flag(1050389205));
 ezs::transition gowry_quest_transition(&gowry_quest_state, evals::get_talk_list[11]);
 
 ADD_TALK_LIST_DATA_ARGS(gowry_q1, 1, 87110100);
@@ -1119,6 +1130,7 @@ extern ezs::state d_quest_state;
 extern ezs::state d_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(d_quest, 12, 87120000, esd_or(esd_get_flag(1044399206), esd_and(esd_get_flag(1051439205), esd_get_flag(11109617))));
+ADD_TALK_LIST_IF_DATA_ARGS(d_quest_tracked, 12, 87120001, esd_or(esd_get_flag(1044399206), esd_and(esd_get_flag(1051439205), esd_get_flag(11109617))));
 ezs::transition d_quest_transition(&d_quest_state, evals::get_talk_list[12]);
 
 ADD_TALK_LIST_DATA_ARGS(d_q1, 1, 87120100);
@@ -1212,6 +1224,7 @@ extern ezs::state gurranq_quest_state;
 extern ezs::state gurranq_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(gurranq_quest, 13, 87130000, esd_and(esd_get_flag(1051439205), esd_get_flag(11109617)));
+ADD_TALK_LIST_IF_DATA_ARGS(gurranq_quest_tracked, 13, 87130001, esd_and(esd_get_flag(1051439205), esd_get_flag(11109617)));
 ezs::transition gurranq_quest_transition(&gurranq_quest_state, evals::get_talk_list[13]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(gurranq_q1, 1, 87130100, esd_get_flag_value(1051439230, 1, 0));
@@ -1322,6 +1335,7 @@ extern ezs::state diallos_quest_state;
 extern ezs::state diallos_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(diallos_quest, 14, 87140000, esd_get_flag(11109406));
+ADD_TALK_LIST_IF_DATA_ARGS(diallos_quest_tracked, 14, 87140001, esd_get_flag(11109406));
 ezs::transition diallos_quest_transition(&diallos_quest_state, evals::get_talk_list[14]);
 
 ADD_TALK_LIST_DATA_ARGS(diallos_q1, 1, 87140100);
@@ -1420,6 +1434,7 @@ extern ezs::state seluvis_quest_state;
 extern ezs::state seluvis_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(seluvis_quest, 15, 87150000, esd_get_flag(1034509312));
+ADD_TALK_LIST_IF_DATA_ARGS(seluvis_quest_tracked, 15, 87150001, esd_get_flag(1034509312));
 ezs::transition seluvis_quest_transition(&seluvis_quest_state, evals::get_talk_list[15]);
 
 ADD_TALK_LIST_DATA_ARGS(seluvis_q1, 1, 87150100);
@@ -1530,6 +1545,7 @@ extern ezs::state dungeater_quest_state;
 extern ezs::state dungeater_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(dungeater_quest, 16, 87160000, esd_get_flag(11109955));
+ADD_TALK_LIST_IF_DATA_ARGS(dungeater_quest_tracked, 16, 87160001, esd_get_flag(11109955));
 ezs::transition dungeater_quest_transition(&dungeater_quest_state, evals::get_talk_list[16]);
 
 ADD_TALK_LIST_DATA_ARGS(dungeater_q1, 1, 87160100);
@@ -1616,6 +1632,7 @@ extern ezs::state rogier_quest_state;
 extern ezs::state rogier_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(rogier_quest, 17, 87170000, esd_or(esd_get_flag(10009617), esd_or(esd_get_flag(10009616), esd_get_flag(10009619))));
+ADD_TALK_LIST_IF_DATA_ARGS(rogier_quest_tracked, 17, 87170001, esd_or(esd_get_flag(10009617), esd_or(esd_get_flag(10009616), esd_get_flag(10009619))));
 ezs::transition rogier_quest_transition(&rogier_quest_state, evals::get_talk_list[17]);
 
 ADD_TALK_LIST_DATA_ARGS(rogier_q1, 1, 87170100);
@@ -1726,6 +1743,7 @@ extern ezs::state nepheli_quest_state;
 extern ezs::state nepheli_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(nepheli_quest, 18, 87180000, esd_or(esd_get_flag(10009706), esd_get_flag(11109905)));
+ADD_TALK_LIST_IF_DATA_ARGS(nepheli_quest_tracked, 18, 87180001, esd_or(esd_get_flag(10009706), esd_get_flag(11109905)));
 ezs::transition nepheli_quest_transition(&nepheli_quest_state, evals::get_talk_list[18]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(nepheli_q1, 1, 87180100, esd_get_flag(10009706));
@@ -1824,6 +1842,7 @@ extern ezs::state hyetta_quest_state;
 extern ezs::state hyetta_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(hyetta_quest, 19, 87190000, esd_get_flag(1039409205));
+ADD_TALK_LIST_IF_DATA_ARGS(hyetta_quest_tracked, 19, 87190001, esd_get_flag(1039409205));
 ezs::transition hyetta_quest_transition(&hyetta_quest_state, evals::get_talk_list[19]);
 
 ADD_TALK_LIST_DATA_ARGS(hyetta_q1, 1, 87190100);
@@ -1916,6 +1935,7 @@ extern ezs::state alexander_quest_state;
 extern ezs::state alexander_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(alexander_quest, 20, 87200000, esd_or(esd_get_flag(1043399306), esd_or(esd_get_flag(1051369255), esd_get_flag(1051369265))));
+ADD_TALK_LIST_IF_DATA_ARGS(alexander_quest_tracked, 20, 87200001, esd_or(esd_get_flag(1043399306), esd_or(esd_get_flag(1051369255), esd_get_flag(1051369265))));
 ezs::transition alexander_quest_transition(&alexander_quest_state, evals::get_talk_list[20]);
 
 ADD_TALK_LIST_DATA_ARGS(alexander_q1, 1, 87200100);
@@ -2014,6 +2034,7 @@ extern ezs::state yura_quest_state;
 extern ezs::state yura_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(yura_quest, 21, 87210000, esd_get_flag(1043379260));
+ADD_TALK_LIST_IF_DATA_ARGS(yura_quest_tracked, 21, 87210001, esd_get_flag(1043379260));
 ezs::transition yura_quest_transition(&yura_quest_state, evals::get_talk_list[21]);
 
 ADD_TALK_LIST_DATA_ARGS(yura_q1, 1, 87210100);
@@ -2100,6 +2121,7 @@ extern ezs::state fia_quest_state;
 extern ezs::state fia_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(fia_quest, 22, 87220000, esd_get_flag(11109008));
+ADD_TALK_LIST_IF_DATA_ARGS(fia_quest_tracked, 22, 87220001, esd_get_flag(11109008));
 ezs::transition fia_quest_transition(&fia_quest_state, evals::get_talk_list[22]);
 
 ADD_TALK_LIST_DATA_ARGS(fia_q1, 1, 87220100);
@@ -2186,6 +2208,7 @@ extern ezs::state varre_quest_state;
 extern ezs::state varre_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(varre_quest, 23, 87230000, esd_get_flag(1042369206));
+ADD_TALK_LIST_IF_DATA_ARGS(varre_quest_tracked, 23, 87230001, esd_get_flag(1042369206));
 ezs::transition varre_quest_transition(&varre_quest_state, evals::get_talk_list[23]);
 
 ADD_TALK_LIST_DATA_ARGS(varre_q1, 1, 87230100);
@@ -2272,6 +2295,7 @@ extern ezs::state millicent_quest_state;
 extern ezs::state millicent_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(millicent_quest, 24, 87240000, esd_or(esd_get_flag(1050389258), esd_get_flag(1038519256)));
+ADD_TALK_LIST_IF_DATA_ARGS(millicent_quest_tracked, 24, 87240001, esd_or(esd_get_flag(1050389258), esd_get_flag(1038519256)));
 ezs::transition millicent_quest_transition(&millicent_quest_state, evals::get_talk_list[24]);
 
 ADD_TALK_LIST_DATA_ARGS(millicent_q1, 1, 87240100);
@@ -2370,6 +2394,7 @@ extern ezs::state jarbairn_quest_state;
 extern ezs::state jarbairn_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(jarbairn_quest, 25, 87250000, esd_or(esd_get_flag(1039449255), esd_get_flag(1039449256)));
+ADD_TALK_LIST_IF_DATA_ARGS(jarbairn_quest_tracked, 25, 87250001, esd_or(esd_get_flag(1039449255), esd_get_flag(1039449256)));
 ezs::transition jarbairn_quest_transition(&jarbairn_quest_state, evals::get_talk_list[25]);
 
 ADD_TALK_LIST_DATA_ARGS(jarbairn_q1, 1, 87250100);
@@ -2444,6 +2469,7 @@ extern ezs::state corhyn_quest_state;
 extern ezs::state corhyn_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(corhyn_quest, 26, 87260000, esd_get_flag(11109855));
+ADD_TALK_LIST_IF_DATA_ARGS(corhyn_quest_tracked, 26, 87260001, esd_get_flag(11109855));
 ezs::transition corhyn_quest_transition(&corhyn_quest_state, evals::get_talk_list[26]);
 
 ADD_TALK_LIST_DATA_ARGS(corhyn_q1, 1, 87260100);
@@ -2554,6 +2580,7 @@ extern ezs::state latenna_quest_state;
 extern ezs::state latenna_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(latenna_quest, 27, 87270000, esd_get_flag(1035429209));
+ADD_TALK_LIST_IF_DATA_ARGS(latenna_quest_tracked, 27, 87270001, esd_get_flag(1035429209));
 ezs::transition latenna_quest_transition(&latenna_quest_state, evals::get_talk_list[27]);
 
 ADD_TALK_LIST_DATA_ARGS(latenna_q1, 1, 87270100);
@@ -2628,6 +2655,7 @@ extern ezs::state bernahl_quest_state;
 extern ezs::state bernahl_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(bernahl_quest, 28, 87280000, esd_or(esd_get_flag(1042382713), esd_or(esd_get_flag(16009455), esd_get_flag(16009456))));
+ADD_TALK_LIST_IF_DATA_ARGS(bernahl_quest_tracked, 28, 87280001, esd_or(esd_get_flag(1042382713), esd_or(esd_get_flag(16009455), esd_get_flag(16009456))));
 ezs::transition bernahl_quest_transition(&bernahl_quest_state, evals::get_talk_list[28]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(bernahl_q1, 1, 87280100, esd_get_flag(1042382713));
@@ -2726,6 +2754,7 @@ extern ezs::state ansbach_quest_state;
 extern ezs::state ansbach_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(ansbach_quest, 29, 87290000, esd_or(esd_get_flag(2046429355), esd_get_flag(2045429206)));
+ADD_TALK_LIST_IF_DATA_ARGS(ansbach_quest_tracked, 29, 87290001, esd_or(esd_get_flag(2046429355), esd_get_flag(2045429206)));
 ezs::transition ansbach_quest_transition(&ansbach_quest_state, evals::get_talk_list[29]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(ansbach_q1, 1, 87290100, esd_get_flag(2046429355));
@@ -2848,6 +2877,7 @@ extern ezs::state hornsent_quest_state;
 extern ezs::state hornsent_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(hornsent_quest, 31, 87310000, esd_or(esd_get_flag(2048459278), esd_and(esd_get_flag(2046429210), esd_and(esd_not(esd_get_flag(2048459278)), esd_not(esd_get_flag(21019205))))));
+ADD_TALK_LIST_IF_DATA_ARGS(hornsent_quest_tracked, 31, 87310001, esd_or(esd_get_flag(2048459278), esd_and(esd_get_flag(2046429210), esd_and(esd_not(esd_get_flag(2048459278)), esd_not(esd_get_flag(21019205))))));
 ezs::transition hornsent_quest_transition(&hornsent_quest_state, evals::get_talk_list[31]);
 
 ADD_TALK_LIST_DATA_ARGS(hornsent_q1, 1, 87310100);
@@ -2922,6 +2952,7 @@ extern ezs::state queelign_quest_state;
 extern ezs::state queelign_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(queelign_quest, 32, 87320000, esd_get_flag(21009212));
+ADD_TALK_LIST_IF_DATA_ARGS(queelign_quest_tracked, 32, 87320001, esd_get_flag(21009212));
 ezs::transition queelign_quest_transition(&queelign_quest_state, evals::get_talk_list[32]);
 
 ADD_TALK_LIST_DATA_ARGS(queelign_q1, 1, 87320100);
@@ -2984,6 +3015,7 @@ extern ezs::state ymir_quest_state;
 extern ezs::state ymir_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(ymir_quest, 33, 87330000, esd_get_flag(2051459220));
+ADD_TALK_LIST_IF_DATA_ARGS(ymir_quest_tracked, 33, 87330001, esd_get_flag(2051459220));
 ezs::transition ymir_quest_transition(&ymir_quest_state, evals::get_talk_list[33]);
 
 ADD_TALK_LIST_DATA_ARGS(ymir_q1, 1, 87330100);
@@ -3076,6 +3108,7 @@ extern ezs::state igon_quest_state;
 extern ezs::state igon_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(igon_quest, 34, 87340000, esd_get_flag(2048429208));
+ADD_TALK_LIST_IF_DATA_ARGS(igon_quest_tracked, 34, 87340001, esd_get_flag(2048429208));
 ezs::transition igon_quest_transition(&igon_quest_state, evals::get_talk_list[34]);
 
 ADD_TALK_LIST_DATA_ARGS(igon_q1, 1, 87340100);
@@ -3144,6 +3177,7 @@ extern ezs::state trina_quest_state;
 extern ezs::state trina_quest_list_state;
 
 ADD_TALK_LIST_IF_DATA_ARGS(trina_quest, 35, 87350000, esd_get_flag(22009255));
+ADD_TALK_LIST_IF_DATA_ARGS(trina_quest_tracked, 35, 87350001, esd_get_flag(22009255));
 ezs::transition trina_quest_transition(&trina_quest_state, evals::get_talk_list[35]);
 
 ADD_TALK_LIST_IF_DATA_ARGS(trina_q1, 1, 87350100, esd_get_flag(2048439223));

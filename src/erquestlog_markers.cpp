@@ -52,78 +52,80 @@ struct QuestMarker {
     float posZ;
 };
 
-// Quest markers: one entry per quest step (coordinates filled from Smithbox WorldMapPointParam)
+// Quest markers: one entry per quest (initial NPC location from WorldMapPointParam).
+// enable_flag=0 / disable_flag=0: always visible while tracked; tracking system controls display.
+// Millicent has 3 step-specific markers with real enable/disable flags.
 static const QuestMarker QUEST_MARKERS[] = {
-    // Quest 8701 - Irina
-    { 8701, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8702 - Roderika
-    { 8702, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8703 - Sellen
-    { 8703, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8704 - Kenneth
-    { 8704, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8705 - Boc
-    { 8705, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8706 - Blaidd
-    { 8706, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8707 - Thops
-    { 8707, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8708 - Patches
-    { 8708, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8709 - Ranni
-    { 8709, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8710 - Rya
-    { 8710, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8711 - Gowry
-    { 8711, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8712 - D
-    { 8712, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8713 - Gurranq
-    { 8713, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8714 - Diallos
-    { 8714, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8715 - Seluvis
-    { 8715, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8716 - Dung Eater
-    { 8716, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8717 - Rogier
-    { 8717, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8718 - Nepheli
-    { 8718, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8719 - Hyetta
-    { 8719, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8720 - Alexander
-    { 8720, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8721 - Yura
-    { 8721, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8722 - Fia
-    { 8722, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8723 - Varré
-    { 8723, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8724 - Millicent
+    // Quest 8701 - Irina (Weeping Peninsula: near Bridge of Sacrifice)
+    { 8701, 0, 0, 60, 45, 34, -104.83f, -38.67f },
+    // Quest 8702 - Roderika (Stormhill Shack)
+    { 8702, 0, 0, 60, 41, 38, 33.62f, 10.41f },
+    // Quest 8703 - Sellen (Waypoint Ruins, Limgrave)
+    { 8703, 0, 0, 60, 44, 36, 7.245f, 67.111f },
+    // Quest 8704 - Kenneth Haight (South of Summonwater Village)
+    { 8704, 0, 0, 60, 45, 38, -88.60f, -29.47f },
+    // Quest 8705 - Boc (Agheel Lake North)
+    { 8705, 0, 0, 60, 43, 37, 15.10f, -5.66f },
+    // Quest 8706 - Blaidd (Siofra River / Nokron)
+    { 8706, 0, 0, 12, 2, 0, 1338.47f, 1260.10f },
+    // Quest 8707 - Thops (Church of Irith, Liurnia)
+    { 8707, 0, 0, 60, 39, 39, -30.41f, 106.71f },
+    // Quest 8708 - Patches (Shaded Castle, Altus Plateau)
+    { 8708, 0, 0, 60, 39, 54, -12.12f, 54.17f },
+    // Quest 8709 - Ranni (Ranni's Rise, northwest Liurnia)
+    { 8709, 0, 0, 60, 34, 50, -54.74f, 25.09f },
+    // Quest 8710 - Rya (Scenic Isle, Liurnia)
+    { 8710, 0, 0, 60, 37, 42, 49.433f, 43.811f },
+    // Quest 8711 - Gowry (Gowry's Shack, Caelid)
+    { 8711, 0, 0, 60, 50, 38, -87.75f, 45.93f },
+    // Quest 8712 - D (Summonwater Village Outskirts)
+    { 8712, 0, 0, 60, 44, 39, 5.38f, 18.03f },
+    // Quest 8713 - Gurranq (Bestial Sanctum, Dragonbarrow)
+    { 8713, 0, 0, 60, 51, 43, -38.35f, 1.85f },
+    // Quest 8714 - Diallos (Gate Town Southeast, Liurnia)
+    { 8714, 0, 0, 60, 37, 44, -61.14f, 56.69f },
+    // Quest 8715 - Seluvis (Seluvis's Rise, northwest Liurnia)
+    { 8715, 0, 0, 60, 34, 50, 67.79f, -89.51f },
+    // Quest 8716 - Dung Eater (Subterranean Shunning-Grounds, Leyndell)
+    { 8716, 0, 0, 35, 0, 0, -196.72f, -125.876f },
+    // Quest 8717 - Rogier (Stormveil Castle)
+    { 8717, 0, 0, 10, 0, 0, -273.04f, 177.86f },
+    // Quest 8718 - Nepheli (Stormveil Castle)
+    { 8718, 0, 0, 10, 0, 0, -188.07f, 210.78f },
+    // Quest 8719 - Hyetta (Laskyar Ruins, Liurnia)
+    { 8719, 0, 0, 60, 38, 41, 80.85f, 95.82f },
+    // Quest 8720 - Alexander (Saintsbridge, Stormhill)
+    { 8720, 0, 0, 60, 43, 39, -17.63f, -15.51f },
+    // Quest 8721 - Yura (Seaside Ruins, Limgrave)
+    { 8721, 0, 0, 60, 43, 35, 37.58f, 69.61f },
+    // Quest 8722 - Fia (Roundtable Hold; shown at Leyndell entry on map)
+    { 8722, 0, 0, 11, 0, 0, -226.14f, -213.89f },
+    // Quest 8723 - Varré (Rose Church, Liurnia)
+    { 8723, 0, 0, 60, 35, 44, -88.36f, -112.47f },
+    // Quest 8724 - Millicent (3 step-specific markers)
     { 8724, 1045349207, 1043319206, 60, 38, 51, 3.770f, 114.240f },
     { 8724, 1043319206, 1045349255, 60, 39, 54, -25.700f, 13.080f },
     { 8724, 1045349255, 1045349252, 60, 41, 54, 76.830f, 74.000f },
-    // Quest 8725 - Jar-Bairn
-    { 8725, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8726 - Corhyn
-    { 8726, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8727 - Latenna
-    { 8727, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8728 - Bernahl
-    { 8728, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8729 - The Purpose of a God (Ansbach/Freyja)
-    { 8729, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8731 - Hornsent
-    { 8731, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8732 - Queelign
-    { 8732, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8733 - Ymir
-    { 8733, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8734 - Igon
-    { 8734, 0, 0, 0, 0, 0, 0.0f, 0.0f },
-    // Quest 8735 - Thiollier
-    { 8735, 0, 0, 0, 0, 0, 0.0f, 0.0f },
+    // Quest 8725 - Jar-Bairn (Jarburg, Liurnia)
+    { 8725, 0, 0, 60, 39, 44, 43.75f, -6.68f },
+    // Quest 8726 - Corhyn (Forest-Spanning Greatbridge, Altus Plateau)
+    { 8726, 0, 0, 60, 40, 52, -117.46f, -78.10f },
+    // Quest 8727 - Latenna (Slumbering Wolf's Shack, Liurnia)
+    { 8727, 0, 0, 60, 36, 41, 136.30f, -62.70f },
+    // Quest 8728 - Bernahl (Warmaster's Shack, Limgrave)
+    { 8728, 0, 0, 60, 42, 38, 10.388f, 87.536f },
+    // Quest 8729 - Ansbach (Specimen Storehouse, Shadow Keep)
+    { 8729, 0, 0, 21, 1, 0, 225.70f, 315.59f },
+    // Quest 8731 - Hornsent (Belurat, Tower Settlement)
+    { 8731, 0, 0, 20, 0, 0, -16.54f, 100.38f },
+    // Quest 8732 - Queelign (Shadow Keep)
+    { 8732, 0, 0, 21, 0, 0, 282.81f, 200.28f },
+    // Quest 8733 - Ymir (Cathedral of Manus Metyr, Scadu Altus)
+    { 8733, 0, 0, 61, 51, 45, -91.69f, 21.48f },
+    // Quest 8734 - Igon (Jagged Peak, SotE)
+    { 8734, 0, 0, 61, 48, 42, -80.31f, 60.88f },
+    // Quest 8735 - Thiollier (Enir-Ilim, SotE)
+    { 8735, 0, 0, 20, 1, 0, -206.19f, -170.66f },
 };
 
 static ParamResCap* find_world_map_point_param()

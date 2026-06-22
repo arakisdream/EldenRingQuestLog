@@ -18,6 +18,62 @@ static std::array<from::EzState::event, 100> patched_events;
 static std::array<from::EzState::transition *, 100> patched_transitions;
 static std::array<from::EzState::transition *, 100> test_tr;
 
+// When quest_log_state (id=99000) is entered, swap quest list event args to show
+// "(tracked)" text for tracked quests. Uses pointer identity to match events.
+static void patch_quest_log_tracked()
+{
+    using QuestArgs = std::array<ezs::arg, 4>;
+    struct QuestArgsPair { int quest_id; QuestArgs* normal; QuestArgs* tracked; };
+
+    static QuestArgsPair pairs[] = {
+        { 8701, &irina_quest_args,     &irina_quest_tracked_args     },
+        { 8702, &roderika_quest_args,  &roderika_quest_tracked_args  },
+        { 8703, &sellen_quest_args,    &sellen_quest_tracked_args    },
+        { 8704, &kenneth_quest_args,   &kenneth_quest_tracked_args   },
+        { 8705, &boc_quest_args,       &boc_quest_tracked_args       },
+        { 8706, &blaidd_quest_args,    &blaidd_quest_tracked_args    },
+        { 8707, &thops_quest_args,     &thops_quest_tracked_args     },
+        { 8708, &patches_quest_args,   &patches_quest_tracked_args   },
+        { 8709, &ranni_quest_args,     &ranni_quest_tracked_args     },
+        { 8710, &rya_quest_args,       &rya_quest_tracked_args       },
+        { 8711, &gowry_quest_args,     &gowry_quest_tracked_args     },
+        { 8712, &d_quest_args,         &d_quest_tracked_args         },
+        { 8713, &gurranq_quest_args,   &gurranq_quest_tracked_args   },
+        { 8714, &diallos_quest_args,   &diallos_quest_tracked_args   },
+        { 8715, &seluvis_quest_args,   &seluvis_quest_tracked_args   },
+        { 8716, &dungeater_quest_args, &dungeater_quest_tracked_args },
+        { 8717, &rogier_quest_args,    &rogier_quest_tracked_args    },
+        { 8718, &nepheli_quest_args,   &nepheli_quest_tracked_args   },
+        { 8719, &hyetta_quest_args,    &hyetta_quest_tracked_args    },
+        { 8720, &alexander_quest_args, &alexander_quest_tracked_args },
+        { 8721, &yura_quest_args,      &yura_quest_tracked_args      },
+        { 8722, &fia_quest_args,       &fia_quest_tracked_args       },
+        { 8723, &varre_quest_args,     &varre_quest_tracked_args     },
+        { 8724, &millicent_quest_args, &millicent_quest_tracked_args },
+        { 8725, &jarbairn_quest_args,  &jarbairn_quest_tracked_args  },
+        { 8726, &corhyn_quest_args,    &corhyn_quest_tracked_args    },
+        { 8727, &latenna_quest_args,   &latenna_quest_tracked_args   },
+        { 8728, &bernahl_quest_args,   &bernahl_quest_tracked_args   },
+        { 8729, &ansbach_quest_args,   &ansbach_quest_tracked_args   },
+        { 8731, &hornsent_quest_args,  &hornsent_quest_tracked_args  },
+        { 8732, &queelign_quest_args,  &queelign_quest_tracked_args  },
+        { 8733, &ymir_quest_args,      &ymir_quest_tracked_args      },
+        { 8734, &igon_quest_args,      &igon_quest_tracked_args      },
+        { 8735, &trina_quest_args,     &trina_quest_tracked_args     },
+    };
+
+    for (auto& ev : quest_log_events) {
+        if (ev.command != talk_comm::add_talk_list_data_if) continue;
+        for (auto& p : pairs) {
+            if (ev.args.data() == p.normal->data() || ev.args.data() == p.tracked->data()) {
+                bool tracked = erquestlog::markers::is_quest_tracked(p.quest_id);
+                ev.args = tracked ? *p.tracked : *p.normal;
+                break;
+            }
+        }
+    }
+}
+
 static bool is_sort_chest_transition(const from::EzState::transition *transition)
 {
     auto target_state = transition->target_state;
@@ -149,6 +205,12 @@ static void ezstate_enter_state_detour(from::EzState::state *state,
         {
             main_menu_return_transition.target_state = state;
         }
+    }
+
+    // Refresh (tracked) labels each time the quest log list opens
+    if (state->id == 99000)
+    {
+        patch_quest_log_tracked();
     }
 
     // Tracking toggle states: state_id = quest_id * 100 + 51
